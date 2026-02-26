@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CNA Bagheria - Area Riservata</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cna-blue: #004a99;
+            --cna-dark: #003366;
+            --accent-red: #e63946;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--cna-blue); /* Sfondo Blue richiesto */
+            background: linear-gradient(135deg, var(--cna-blue) 0%, var(--cna-dark) 100%);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            background: var(--white);
+            padding: 40px 30px;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo {
+            width: 140px;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            color: var(--cna-blue);
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+
+        p.tagline {
+            font-size: 14px;
+            color: #777;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 16px;
+            margin: 15px 0;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .btn-offerte {
+            background-color: var(--accent-red);
+            color: white;
+            box-shadow: 0 4px 15px rgba(230, 57, 70, 0.4);
+        }
+
+        .btn-verifica {
+            background-color: var(--cna-blue);
+            color: white;
+            box-shadow: 0 4px 15px rgba(0, 74, 153, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+            filter: brightness(1.1);
+        }
+
+        #search-box {
+            display: none;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            animation: slideDown 0.4s ease-out;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            margin-bottom: 12px;
+            text-align: center;
+            font-size: 16px;
+            box-sizing: border-box;
+            outline: none;
+            text-transform: uppercase;
+        }
+
+        input:focus {
+            border-color: var(--cna-blue);
+        }
+
+        .btn-check {
+            background-color: #333;
+            color: white;
+            font-size: 14px;
+        }
+
+        #result {
+            margin-top: 15px;
+            font-weight: 600;
+            padding: 15px;
+            border-radius: 10px;
+            display: none;
+            font-size: 15px;
+        }
+
+        .attiva { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .scaduta { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        footer {
+            margin-top: 25px;
+            font-size: 11px;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <img src="https://www.cna.it/wp-content/themes/cna/assets/img/logo-cna.png" class="logo" alt="Logo CNA">
+    <h1>CNA BAGHERIA</h1>
+    <p class="tagline">Area Digitale Servizi ai Soci</p>
+
+    <a href="https://drive.google.com/file/d/1LXJ6c9fhtdNGdy_mL5tU9OqyRASJfRCy/view?usp=sharing" target="_blank" class="btn btn-offerte">
+        🎁 VEDI CONVENZIONI PDF
+    </a>
+
+    <button onclick="toggleSearch()" class="btn btn-verifica">
+        🔍 VERIFICA CARD SOCIO
+    </button>
+
+    <div id="search-box">
+        <input type="text" id="cardCode" placeholder="INSERISCI CODICE CARD">
+        <button onclick="checkCard()" class="btn btn-check">VERIFICA ORA</button>
+        <div id="result"></div>
+    </div>
+
+    <footer>© 2024 CNA Bagheria - Servizio Clienti</footer>
+</div>
+
+<script>
+    function toggleSearch() {
+        const box = document.getElementById('search-box');
+        box.style.display = box.style.display === 'block' ? 'none' : 'block';
+    }
+
+    async function checkCard() {
+        const code = document.getElementById('cardCode').value.trim().toUpperCase();
+        const resultDiv = document.getElementById('result');
+        if (!code) return;
+
+        resultDiv.style.display = "block";
+        resultDiv.innerHTML = "Controllo in corso...";
+        resultDiv.className = "";
+
+        // URL del tuo Script Google (già inserito)
+        const webAppUrl = "https://script.google.com/macros/s/AKfycbygxAVM6nAfXAptK9zPk2AdQ8DC4Up-1zdTLEnaUNGER-0Vdd5pJLJrP3r1afch_Fo3/exec";
+
+        try {
+            const response = await fetch(`${webAppUrl}?check=${code}`);
+            const data = await response.json();
+
+            if (data.ok) {
+                resultDiv.innerHTML = `STATO: ${data.stato}<br>VALIDITÀ: ${data.validita}`;
+                resultDiv.className = data.stato === "ATTIVA" ? "attiva" : "scaduta";
+            } else {
+                resultDiv.innerHTML = "ERRORE: CARD NON TROVATA";
+                resultDiv.className = "scaduta";
+            }
+        } catch (error) {
+            resultDiv.innerHTML = "Errore di connessione al database";
+            console.error(error);
+        }
+    }
+</script>
+
+</body>
+</html>
