@@ -15,7 +15,7 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: var(--cna-blue); /* Sfondo Blue richiesto */
+            background-color: var(--cna-blue);
             background: linear-gradient(135deg, var(--cna-blue) 0%, var(--cna-dark) 100%);
             margin: 0;
             display: flex;
@@ -73,6 +73,7 @@
             box-sizing: border-box;
         }
 
+        /* Pulsante Rosso per il PDF Interno */
         .btn-offerte {
             background-color: var(--accent-red);
             color: white;
@@ -153,7 +154,7 @@
     <h1>CNA BAGHERIA</h1>
     <p class="tagline">Area Digitale Servizi ai Soci</p>
 
-    <a href="https://drive.google.com/file/d/1FOTp3A2AZ2Ryp2KQIKMoQzqO6BvJZ7ib/view?usp=sharing">
+    <a href="convenzioni.pdf" target="_blank" class="btn btn-offerte">
         🎁 VEDI CONVENZIONI PDF
     </a>
 
@@ -185,7 +186,6 @@
         resultDiv.innerHTML = "Controllo in corso...";
         resultDiv.className = "";
 
-        // URL del tuo Script Google (già inserito)
         const webAppUrl = "https://script.google.com/macros/s/AKfycbygxAVM6nAfXAptK9zPk2AdQ8DC4Up-1zdTLEnaUNGER-0Vdd5pJLJrP3r1afch_Fo3/exec";
 
         try {
@@ -207,5 +207,4 @@
 </script>
 
 </body>
-
 </html>
