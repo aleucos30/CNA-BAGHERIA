@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CNA Bagheria - Servizi Digitali</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --cna-blue: #004a99;
@@ -13,240 +13,210 @@
             --discount-red: #ef233c;
             --light-bg: #f0f2f5;
             --white: #ffffff;
-            --text-main: #2b2d42;
         }
 
-        body { font-family: 'Inter', sans-serif; background-color: var(--light-bg); margin: 0; padding: 0; color: var(--text-main); line-height: 1.6; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--light-bg); margin: 0; padding: 0; color: #333; }
         
+        /* HEADER RIDISEGNATO PER NON COPRIRE I TESTI */
         header { 
             background: linear-gradient(135deg, var(--cna-dark) 0%, var(--cna-blue) 100%); 
             color: white; 
-            padding: 30px 20px 60px; /* Aumentato padding inferiore per ospitare il logo */
-            text-align: center; 
-            clip-path: ellipse(150% 100% at 50% 0%); 
+            padding: 40px 20px 80px; /* Spazio extra in basso */
+            text-align: center;
+            position: relative;
         }
 
         .logo-cna { 
-            max-width: 130px; 
+            max-width: 140px; 
             height: auto; 
-            margin-bottom: 10px; 
-            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
-            display: inline-block;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
         }
 
-        header h1 { font-size: 1.5rem; margin: 5px 0 0; letter-spacing: 1px; }
+        header h1 { margin: 0; font-size: 1.6rem; text-transform: uppercase; letter-spacing: 1px; }
 
-        .container { max-width: 900px; margin: -35px auto 60px; padding: 0 15px; }
+        .container { 
+            max-width: 600px; 
+            margin: -40px auto 60px; /* Alza il contenuto sopra l'header blu */
+            padding: 0 15px; 
+            position: relative;
+            z-index: 10;
+        }
 
-        /* NAVIGAZIONE TASTI */
+        /* TASTI NAVIGAZIONE */
         .nav-menu { 
             display: flex; 
-            gap: 12px; 
-            margin-bottom: 25px; 
-            justify-content: center; 
+            gap: 10px; 
             background: white;
             padding: 10px;
             border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            margin-bottom: 25px;
         }
 
         .nav-btn {
-            flex: 1; 
-            padding: 12px 5px; 
-            border: 2px solid transparent; 
-            border-radius: 10px; 
+            flex: 1;
+            padding: 15px 5px;
+            border: none;
+            border-radius: 10px;
             font-weight: 700;
-            cursor: pointer; 
-            transition: all 0.3s ease; 
             font-size: 0.85rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 5px;
-            background: #f8f9fa;
+            cursor: pointer;
+            transition: 0.3s;
+            background: #eee;
             color: #666;
         }
 
-        /* Effetto Tasto Attivo */
-        .nav-btn.active-blue { 
-            background: var(--cna-blue); 
-            color: white; 
-            box-shadow: 0 4px 12px rgba(0,74,153,0.3);
-        }
-        
-        .nav-btn.active-gold { 
-            background: var(--accent-gold); 
-            color: var(--cna-dark); 
-            box-shadow: 0 4px 12px rgba(212,175,55,0.4);
+        /* Colore tasto attivo */
+        .nav-btn.active-blue { background: var(--cna-blue); color: white; }
+        .nav-btn.active-gold { background: var(--accent-gold); color: var(--cna-dark); }
+
+        /* SEZIONI */
+        .content-section { display: none; }
+        .active { display: block; animation: fadeIn 0.4s; }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* CARD CONVENZIONI */
+        .card { 
+            background: white; 
+            padding: 20px; 
+            border-radius: 15px; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05); 
+            margin-bottom: 15px;
+            border-left: 5px solid var(--cna-blue);
         }
 
-        .content-section { display: none; animation: fadeIn 0.4s ease-out; }
-        .section-visible { display: block; }
-
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-        /* STILE CARD */
-        .partner-section { 
-            background: var(--white); padding: 25px; border-radius: 18px; 
-            box-shadow: 0 6px 20px rgba(0,0,0,0.05); margin-bottom: 20px; 
-            border-left: 6px solid var(--cna-blue);
-        }
-        
-        .partner-header h2 { margin: 0 0 8px 0; color: var(--cna-dark); font-size: 1.3rem; text-transform: uppercase; }
-        
-        .offer-box { 
-            background: #f9fbff; padding: 15px; border-radius: 12px; 
-            border: 1px solid #e1e8f0; border-left: 4px solid var(--accent-gold); margin-top: 15px; 
-        }
-        
         .offer-tag { 
-            background: linear-gradient(45deg, var(--discount-red), #ff4d6d); 
-            color: white; padding: 3px 10px; border-radius: 6px; font-size: 11px; font-weight: 800; 
+            background: var(--discount-red); 
+            color: white; 
+            padding: 4px 10px; 
+            border-radius: 6px; 
+            font-size: 0.75rem; 
+            font-weight: 800;
+            display: inline-block;
+            margin-bottom: 10px;
         }
 
         /* VERIFICA CARD */
-        .verify-card { text-align: center; padding: 20px; }
-        .input-verifica { 
-            width: 100%; max-width: 300px; padding: 15px; margin: 15px 0; 
-            border: 2px solid #ddd; border-radius: 12px; font-size: 1.2rem; 
-            text-align: center; font-weight: 700; color: var(--cna-blue);
+        .verify-box { text-align: center; padding: 20px; }
+        .input-card { 
+            width: 100%; 
+            padding: 15px; 
+            font-size: 1.2rem; 
+            border: 2px solid #ddd; 
+            border-radius: 10px; 
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            text-align: center;
         }
 
-        footer { text-align: center; padding: 40px; color: #999; font-size: 0.8rem; }
-
-        @media (max-width: 480px) {
-            header { padding: 20px 10px 50px; }
-            .logo-cna { max-width: 100px; }
-            .nav-btn { font-size: 0.75rem; }
-        }
+        footer { text-align: center; padding: 30px; color: #999; font-size: 0.8rem; }
     </style>
 </head>
 <body>
 
 <header>
-    <img src="logo.png" alt="CNA Bagheria" class="logo-cna" onerror="this.src='https://upload.wikimedia.org/wikipedia/it/thumb/3/30/Logo_CNA.svg/1200px-Logo_CNA.svg.png'">
-    <h1>CNA BAGHERIA</h1>
+    <img src="logo.png" alt="CNA" class="logo-cna" onerror="this.style.display='none'">
+    <h1>CNA Bagheria</h1>
 </header>
 
 <div class="container">
     <div class="nav-menu">
-        <button id="btn-conv" class="nav-btn active-blue" onclick="switchTab('convenzioni')">
-            <span>🛍️</span> CONVENZIONI
-        </button>
-        <button id="btn-ver" class="nav-btn" onclick="switchTab('verifica')">
-            <span>🔍</span> VERIFICA CARD
-        </button>
+        <button id="btn-conv" class="nav-btn active-blue" onclick="switchTab('convenzioni')">🛍️ CONVENZIONI</button>
+        <button id="btn-ver" class="nav-btn" onclick="switchTab('verifica')">🔍 VERIFICA CARD</button>
     </div>
 
-    <div id="convenzioni" class="content-section section-visible">
+    <div id="convenzioni" class="content-section active">
         <div id="lista-convenzioni">
-            <p style="text-align:center; padding:20px;">Sincronizzazione catalogo...</p>
+            <p style="text-align:center;">Caricamento...</p>
         </div>
     </div>
 
     <div id="verifica" class="content-section">
-        <div class="partner-section verify-card">
-            <h2 style="color: var(--cna-blue);">Controllo Tessera</h2>
-            <p style="font-size:0.9rem; color:#666;">Inserisci il codice per verificare se la card è attiva.</p>
-            <input type="text" id="cardCode" class="input-verifica" placeholder="CARD0000" maxlength="10">
-            <button class="nav-btn active-blue" style="width:100%; max-width:300px; margin: 0 auto;" onclick="controllaCard()">VERIFICA ORA</button>
+        <div class="card verify-box">
+            <h3>Verifica la tua Card</h3>
+            <input type="text" id="cardCode" class="input-card" placeholder="Esempio: CARD0001">
+            <button class="nav-btn active-blue" style="width:100%;" onclick="controllaCard()">CONTROLLA STATO</button>
             <div id="risultatoVerifica"></div>
         </div>
     </div>
 
-    <footer>
-        <p>© 2026 <strong>CNA Bagheria</strong><br>Servizi digitali per le imprese e i cittadini</p>
-    </footer>
+    <footer>© 2026 CNA Bagheria</footer>
 </div>
 
 <script>
     const CONVENZIONI_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS1jfwi8x1JesxmsI2P6u6K33wbhdifV2IIcamPk5kU_2UlBIw4pmZjsmWMDYUICP4eAlGZJJsUKFlQ/pub?gid=2067656456&single=true&output=csv';
     const SOCI_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS1jfwi8x1JesxmsI2P6u6K33wbhdifV2IIcamPk5kU_2UlBIw4pmZjsmWMDYUICP4eAlGZJJsUKFlQ/pub?gid=0&single=true&output=csv';
 
-    // Gestione Tab con colori attivi
     function switchTab(tabId) {
-        document.querySelectorAll('.content-section').forEach(s => s.classList.remove('section-visible'));
-        document.getElementById(tabId).classList.add('section-visible');
-
-        const btnConv = document.getElementById('btn-conv');
-        const btnVer = document.getElementById('btn-ver');
-
+        document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+        document.getElementById(tabId).classList.add('active');
+        
+        const b1 = document.getElementById('btn-conv');
+        const b2 = document.getElementById('btn-ver');
+        
         if(tabId === 'convenzioni') {
-            btnConv.classList.add('active-blue');
-            btnVer.classList.remove('active-gold');
+            b1.className = 'nav-btn active-blue';
+            b2.className = 'nav-btn';
         } else {
-            btnConv.classList.remove('active-blue');
-            btnVer.classList.add('active-gold');
+            b1.className = 'nav-btn';
+            b2.className = 'nav-btn active-gold';
         }
     }
 
     async function caricaConvenzioni() {
         try {
-            const response = await fetch(CONVENZIONI_URL);
-            const data = await response.text();
+            const resp = await fetch(CONVENZIONI_URL);
+            const data = await resp.text();
             const righe = data.split('\n').slice(1);
             const container = document.getElementById('lista-convenzioni');
             container.innerHTML = '';
 
-            righe.forEach(riga => {
-                const colonne = riga.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
-                if(colonne.length >= 3) {
-                    const nome = colonne[0]?.replace(/"/g, '').trim();
-                    const indirizzo = colonne[1]?.replace(/"/g, '').trim();
-                    const sconto = colonne[2]?.replace(/"/g, '').trim();
-                    const prodotto = colonne[3]?.replace(/"/g, '').trim();
-                    const note = colonne[4]?.replace(/"/g, '').trim();
-
-                    if(nome) {
-                        container.innerHTML += `
-                            <div class="partner-section">
-                                <h2>${nome}</h2>
-                                <div style="font-size:0.85rem; color:#777;">📍 ${indirizzo}</div>
-                                <div class="offer-box">
-                                    <span class="offer-tag">SCONTO ${sconto}</span>
-                                    <div style="margin-top:8px; font-weight:700; color:var(--cna-dark);">${prodotto}</div>
-                                    <div style="font-size:0.75rem; color:#999; font-style:italic; margin-top:4px;">${note}</div>
-                                </div>
-                            </div>`;
-                    }
-                }
-            });
-        } catch (e) { console.error("Errore caricamento convenzioni"); }
-    }
-
-    async function controllaCard() {
-        const inputCodice = document.getElementById('cardCode').value.toUpperCase().trim();
-        const risultatoDiv = document.getElementById('risultatoVerifica');
-        if(!inputCodice) return;
-
-        risultatoDiv.innerHTML = "<p style='margin-top:20px;'>Verifica in corso...</p>";
-
-        try {
-            const response = await fetch(SOCI_URL);
-            const data = await response.text();
-            const soci = data.split('\n').slice(1);
-            let trovato = false;
-
-            soci.forEach(riga => {
-                const colonne = riga.split(',');
-                const nomeSocio = colonne[0]?.replace(/"/g, '').trim();
-                const codiceCard = colonne[1]?.replace(/"/g, '').trim();
-                const statoCard = colonne[2]?.replace(/"/g, '').trim();
-
-                if(codiceCard === inputCodice) {
-                    trovato = true;
-                    const isValida = statoCard.toLowerCase() === 'valida';
-                    const colore = isValida ? '#2ecc71' : '#e74c3c';
-                    risultatoDiv.innerHTML = `
-                        <div style="padding:20px; border-radius:15px; background:${colore}10; border:2px solid ${colore}; margin-top:20px;">
-                            <h3 style="color:${colore}; margin:0; font-size:1.1rem;">TESSERA ${statoCard.toUpperCase()}</h3>
-                            <p style="margin:8px 0 0 0; font-size:0.9rem;">Socio: <strong>${nomeSocio}</strong></p>
+            righe.forEach(r => {
+                const col = r.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+                if(col[0]) {
+                    container.innerHTML += `
+                        <div class="card">
+                            <span class="offer-tag">SCONTO ${col[2]}</span>
+                            <h3 style="margin:0; color:var(--cna-dark);">${col[0]}</h3>
+                            <p style="font-size:0.8rem; color:#666; margin:5px 0;">📍 ${col[1]}</p>
+                            <div style="font-weight:700; margin-top:10px;">${col[3]}</div>
+                            <div style="font-size:0.7rem; color:#999; font-style:italic;">${col[4] || ''}</div>
                         </div>`;
                 }
             });
+        } catch (e) { console.error(e); }
+    }
 
-            if(!trovato) risultatoDiv.innerHTML = `<p style="color:#e74c3c; margin-top:20px; font-weight:bold;">⚠️ Codice non trovato nel database.</p>`;
-        } catch (e) { risultatoDiv.innerHTML = "Errore di rete."; }
+    async function controllaCard() {
+        const input = document.getElementById('cardCode').value.toUpperCase().trim();
+        const res = document.getElementById('risultatoVerifica');
+        if(!input) return;
+        res.innerHTML = "Verifica...";
+
+        try {
+            const resp = await fetch(SOCI_URL);
+            const data = await resp.text();
+            const righe = data.split('\n').slice(1);
+            let trovato = false;
+
+            righe.forEach(r => {
+                const col = r.split(',');
+                // Col A (0): Numero Card | Col B (1): Nome | Col E (4): Stato
+                if(col[0]?.trim().toUpperCase() === input) {
+                    trovato = true;
+                    const attiva = col[4]?.trim().toUpperCase() === 'ATTIVA';
+                    const color = attiva ? '#2ecc71' : '#e74c3c';
+                    res.innerHTML = `
+                        <div style="margin-top:20px; padding:15px; border:2px solid ${color}; border-radius:10px; background:${color}11">
+                            <h4 style="color:${color}; margin:0;">TESSERA ${attiva ? 'ATTIVA' : 'SCADUTA'}</h4>
+                            <p style="margin:5px 0 0 0;">Socio: <b>${col[1]}</b></p>
+                        </div>`;
+                }
+            });
+            if(!trovato) res.innerHTML = "<p style='color:red; margin-top:15px;'>Codice non trovato.</p>";
+        } catch (e) { res.innerHTML = "Errore di connessione."; }
     }
 
     window.onload = caricaConvenzioni;
