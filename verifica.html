@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CNA Bagheria - Verifica Tessera</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cna-blue: #004a99;
+            --cna-dark: #003366;
+            --accent-red: #e63946;
+            --white: #ffffff;
+            --success: #28a745;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--cna-blue) 0%, var(--cna-dark) 100%);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background: var(--white);
+            padding: 40px 30px;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            width: 90%;
+            max-width: 420px;
+            text-align: center;
+        }
+
+        .logo { width: 120px; margin-bottom: 15px; }
+        h1 { color: var(--cna-blue); font-size: 22px; margin-bottom: 5px; }
+        p.subtitle { color: #666; font-size: 14px; margin-bottom: 25px; }
+
+        .search-box {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid #eee;
+        }
+
+        input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+            text-align: center;
+            text-transform: uppercase;
+            box-sizing: border-box;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        input:focus { border-color: var(--cna-blue); }
+
+        .btn-check {
+            width: 100%;
+            padding: 15px;
+            margin-top: 15px;
+            background: var(--cna-blue);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.3s;
+        }
+
+        .btn-check:hover { background: var(--cna-dark); transform: translateY(-2px); }
+
+        #result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 12px;
+            display: none;
+            text-align: left;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .attiva { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .scaduta { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        
+        .loader {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid var(--cna-blue);
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        
+        .footer-link { margin-top: 20px; display: block; color: var(--white); text-decoration: none; font-size: 12px; opacity: 0.8; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <img src="logo.png" alt="CNA Logo" class="logo">
+        <h1>Verifica Tessera</h1>
+        <p class="subtitle">Inserisci il codice per controllare lo stato</p>
+
+        <div class="search-box">
+            <input type="text" id="cardNumber" placeholder="ES: CNA001" autocomplete="off">
+            <button class="btn-check" onclick="checkCard()">VERIFICA ORA</button>
+        </div>
+
+        <div id="result"></div>
+    </div>
+
+    <script>
+        async function checkCard() {
+            const inputField = document.getElementById("cardNumber");
+            const cardInput = inputField.value.trim().toUpperCase();
+            const result = document.getElementById("result");
+            
+            // Il tuo link CSV aggiornato
+            const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vS1jfwi8x1JesxmsI2P6u6K33wbhdifV2IIcamPk5kU_2UlBIw4pmZjsmWMDYUICP4eAlGZJJsUKFlQ/pub?output=csv";
+
+            if (!cardInput) {
+                showResult("Per favore, inserisci un codice.", "scaduta");
+                return;
+            }
+
+            // Stato di caricamento
+            result.style.display = "block";
+            result.className = "";
+            result.innerHTML = '<div class="loader"></div> Ricerca nel database...';
+
+            try {
+                const response = await fetch(csvUrl);
+                const data = await response.text();
+                const rows = data.split(/\r?\n/);
+                let trovato = false;
+
+                // Analisi righe (saltando intestazione)
+                for (let i = 1; i < rows.length; i++) {
+                    const columns = rows[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+                    
+                    if (columns.length < 5) continue;
+
+                    const dbCard   = columns[0].replace(/"/g, '').trim().toUpperCase();
+                    const dbNome   = columns[1].replace(/"/g, '').trim();
+                    const dbTipo   = columns[2].replace(/"/g, '').trim();
+                    const dbValido = columns[3].replace(/"/g, '').trim();
+                    const dbStato  = columns[4].replace(/"/g, '').trim().toUpperCase();
+
+                    if (dbCard === cardInput) {
+                        if (dbStato === "ATTIVA") {
+                            showResult(`
+                                <strong>✅ TESSERA ATTIVA</strong><br>
+                                👤 <b>Socio:</b> ${dbNome}<br>
+                                📋 <b>Tipo:</b> ${dbTipo}<br>
+                                📅 <b>Validità:</b> ${dbValido}
+                            `, "attiva");
+                        } else {
+                            showResult(`
+                                <strong>❌ TESSERA NON ATTIVA</strong><br>
+                                👤 <b>Socio:</b> ${dbNome}<br>
+                                ⚠️ <b>Stato:</b> ${dbStato}<br>
+                                📅 <b>Scadenza:</b> ${dbValido}
+                            `, "scaduta");
+                        }
+                        trovato = true;
+                        break;
+                    }
+                }
+
+                if (!trovato) {
+                    showResult(`⚠️ Il codice <strong>${cardInput}</strong> non è presente in archivio.`, "scaduta");
+                }
+
+            } catch (error) {
+                showResult("Si è verificato un errore di connessione. Riprova più tardi.", "scaduta");
+                console.error(error);
+            }
+        }
+
+        function showResult(html, type) {
+            const result = document.getElementById("result");
+            result.style.display = "block";
+            result.className = type;
+            result.innerHTML = html;
+        }
+    </script>
+</body>
+</html>
