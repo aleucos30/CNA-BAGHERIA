@@ -3,240 +3,161 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CNA Bagheria - Area Riservata</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Catalogo Convenzioni - CNA Bagheria</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --cna-blue: #004a99;
-            --cna-dark: #003366;
-            --accent-red: #e63946;
+            --cna-dark: #002d62;
+            --accent-gold: #d4af37;
+            --discount-red: #ef233c;
+            --light-bg: #f0f2f5;
             --white: #ffffff;
+            --text-main: #2b2d42;
         }
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--cna-blue);
-            background: linear-gradient(135deg, var(--cna-blue) 0%, var(--cna-dark) 100%);
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            color: #333;
-        }
-
-        .container {
-            background: var(--white);
-            padding: 40px 30px;
-            border-radius: 25px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-            width: 90%;
-            max-width: 400px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .logo {
-            width: 140px;
-            margin-bottom: 10px;
-        }
-
-        h1 {
-            color: var(--cna-blue);
-            font-size: 22px;
-            font-weight: 600;
-            margin-bottom: 5px;
-            letter-spacing: 1px;
-        }
-
-        p.tagline {
-            font-size: 14px;
-            color: #777;
-            margin-bottom: 30px;
-        }
-
-        .btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            padding: 16px;
-            margin: 15px 0;
-            border: none;
-            border-radius: 12px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            box-sizing: border-box;
-        }
-
-        .btn-offerte {
-            background-color: var(--accent-red);
-            color: white;
-            box-shadow: 0 4px 15px rgba(230, 57, 70, 0.4);
-        }
-
-        .btn-verifica {
-            background-color: var(--cna-blue);
-            color: white;
-            box-shadow: 0 4px 15px rgba(0, 74, 153, 0.3);
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
-            filter: brightness(1.1);
-        }
-
-        #search-box {
-            display: none; /* Inizialmente nascosto */
-            margin-top: 25px;
-            padding-top: 20px;
-            border-top: 1px solid #eee;
-        }
-
-        input {
-            width: 100%;
-            padding: 14px;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            margin-bottom: 12px;
-            text-align: center;
-            font-size: 16px;
-            box-sizing: border-box;
-            outline: none;
-            text-transform: uppercase;
-        }
-
-        input:focus {
-            border-color: var(--cna-blue);
-        }
-
-        .btn-check {
-            background-color: #333;
-            color: white;
-            font-size: 14px;
-        }
-
-        #result {
-            margin-top: 15px;
-            font-weight: 400;
-            padding: 15px;
-            border-radius: 10px;
-            display: none;
-            font-size: 14px;
-            line-height: 1.5;
-            text-align: left;
-        }
-
-        .attiva { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
-        .scaduta { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--light-bg); margin: 0; padding: 0; color: var(--text-main); line-height: 1.6; }
         
-        /* Animazione caricamento */
-        .loading { color: #666; font-style: italic; font-size: 13px; }
+        header { 
+            background: linear-gradient(135deg, var(--cna-dark) 0%, var(--cna-blue) 100%); 
+            color: white; 
+            padding: 60px 20px; 
+            text-align: center; 
+            clip-path: ellipse(150% 100% at 50% 0%); 
+        }
+
+        .logo-cna { 
+            max-width: 140px; 
+            height: auto;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3)); 
+            margin-bottom: 15px; 
+        }
+
+        .container { max-width: 900px; margin: -50px auto 60px; padding: 0 20px; }
+
+        .intro-card { 
+            background: var(--white); 
+            padding: 35px; 
+            border-radius: 20px; 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1); 
+            text-align: center; 
+            margin-bottom: 40px; 
+            border-bottom: 4px solid var(--accent-gold); 
+        }
+
+        .motto { color: var(--cna-blue); font-weight: 700; font-size: 1.2rem; margin: 10px 0; }
+
+        .partner-section { 
+            background: var(--white); 
+            padding: 30px; 
+            border-radius: 20px; 
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05); 
+            margin-bottom: 25px; 
+            position: relative; 
+            border-left: 6px solid var(--cna-blue);
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        .partner-header h2 { margin: 0 0 10px 0; color: var(--cna-dark); font-size: 22px; text-transform: uppercase; }
+        .details { font-size: 0.9rem; color: #6c757d; margin-bottom: 5px; }
+        
+        .offer-box { 
+            background: #f8f9fa; 
+            padding: 15px; 
+            border-radius: 12px; 
+            border-left: 3px solid var(--accent-gold); 
+            margin-top: 15px; 
+        }
+
+        .offer-tag { 
+            background: linear-gradient(45deg, var(--discount-red), #ff4d6d); 
+            color: white; 
+            padding: 4px 12px; 
+            border-radius: 8px; 
+            font-size: 13px; 
+            font-weight: 800; 
+            display: inline-block; 
+        }
+
+        .product-title { margin-top: 8px; font-weight: 700; display: block; }
+        .notes { font-size: 0.75rem; color: #999; font-style: italic; margin-top: 5px; }
+
+        footer { background: var(--cna-dark); color: #bdc3c7; text-align: center; padding: 40px 20px; margin-top: 60px; }
+        
+        .loading { text-align: center; padding: 50px; color: var(--cna-blue); font-weight: 600; }
     </style>
 </head>
-
 <body>
-    <div class="container">
-        <img src="logo.png" alt="Logo CNA" class="logo">
 
-        <h1>Area Riservata</h1>
-        <p class="tagline">CNA Bagheria</p>
+<header>
+    <img src="logo.png" alt="CNA Bagheria" class="logo-cna" onerror="this.src='https://upload.wikimedia.org/wikipedia/it/thumb/3/30/Logo_CNA.svg/1200px-Logo_CNA.svg.png'">
+    <h1>CNA BAGHERIA</h1>
+    <p>Catalogo Convenzioni 2026</p>
+</header>
 
-        <a class="btn btn-offerte" href="catalogo.html">
-            📘 VEDI CATALOGO CONVENZIONI
-        </a>
-
-        <button class="btn btn-verifica" onclick="toggleSearch()">🔍 VERIFICA TESSERA</button>
-
-        <div id="search-box">
-            <input type="text" id="cardNumber" placeholder="INSERISCI NUMERO TESSERA">
-            <button class="btn btn-check" onclick="checkCard()">VERIFICA</button>
-            <div id="result"></div>
-        </div>
+<div class="container">
+    <div class="intro-card">
+        <p class="motto">"Più la usi, Più Risparmi!"</p>
+        <p>Mostra la tua <strong>CNA Cittadini Card</strong> per usufruire degli sconti immediati.</p>
     </div>
 
-    <script>
-        function toggleSearch() {
-            const box = document.getElementById("search-box");
-            // Fix per il primo click
-            const isHidden = window.getComputedStyle(box).display === "none";
-            box.style.display = isHidden ? "block" : "none";
-            if(isHidden) document.getElementById("cardNumber").focus();
-        }
+    <div id="lista-convenzioni">
+        <div class="loading">Caricamento convenzioni in corso...</div>
+    </div>
 
-        async function checkCard() {
-            const inputField = document.getElementById("cardNumber");
-            const cardInput = inputField.value.trim().toUpperCase();
-            const result = document.getElementById("result");
+    <footer>
+        <p>© 2026 <strong>CNA Bagheria</strong> - Servizi per il cittadino</p>
+    </footer>
+</div>
+
+<script>
+    const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS1jfwi8x1JesxmsI2P6u6K33wbhdifV2IIcamPk5kU_2UlBIw4pmZjsmWMDYUICP4eAlGZJJsUKFlQ/pub?output=csv';
+
+    async function caricaConvenzioni() {
+        try {
+            const response = await fetch(SHEET_CSV_URL);
+            const data = await response.text();
             
-            // Il tuo link Google Sheets pubblicato come CSV
-            const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vS1jfwi8x1JesxmsI2P6u6K33wbhdifV2IIcamPk5kU_2UlBIw4pmZjsmWMDYUICP4eAlGZJJsUKFlQ/pub?output=csv";
+            // Dividiamo il CSV in righe, saltando la prima (intestazione)
+            const righe = data.split('\n').slice(1);
+            const container = document.getElementById('lista-convenzioni');
+            container.innerHTML = '';
 
-            if (!cardInput) {
-                result.style.display = "block";
-                result.className = "scaduta";
-                result.textContent = "Inserisci un numero tessera.";
-                return;
-            }
-
-            // Mostra caricamento
-            result.style.display = "block";
-            result.className = "loading";
-            result.textContent = "Verifica in corso...";
-
-            try {
-                const response = await fetch(csvUrl);
-                const data = await response.text();
+            righe.forEach(riga => {
+                // Regex per gestire correttamente le virgole dentro le celle se presenti
+                const colonne = riga.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
                 
-                const rows = data.split(/\r?\n/);
-                let trovato = false;
+                if(colonne.length >= 3) {
+                    const nome = colonne[0]?.replace(/"/g, '').trim() || '';
+                    const indirizzo = colonne[1]?.replace(/"/g, '').trim() || '';
+                    const sconto = colonne[2]?.replace(/"/g, '').trim() || '';
+                    const prodotto = colonne[3]?.replace(/"/g, '').trim() || '';
+                    const note = colonne[4]?.replace(/"/g, '').trim() || '';
 
-                // Loop saltando l'intestazione (i=1)
-                for (let i = 1; i < rows.length; i++) {
-                    // Gestione nomi con virgole racchiusi tra virgolette
-                    const columns = rows[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
-                    
-                    if (columns.length < 5) continue;
-
-                    const dbCard   = columns[0].replace(/"/g, '').trim().toUpperCase();
-                    const dbNome   = columns[1].replace(/"/g, '').trim();
-                    const dbTipo   = columns[2].replace(/"/g, '').trim();
-                    const dbValido = columns[3].replace(/"/g, '').trim();
-                    const dbStato  = columns[4].replace(/"/g, '').trim().toUpperCase();
-
-                    if (dbCard === cardInput) {
-                        if (dbStato === "ATTIVA") {
-                            result.className = "attiva";
-                            result.innerHTML = `✔️ <b>TESSERA ATTIVA</b><br>
-                                                👤 ${dbNome}<br>
-                                                📅 Scadenza: ${dbValido}`;
-                        } else {
-                            result.className = "scaduta";
-                            result.innerHTML = `❌ <b>TESSERA NON ATTIVA</b><br>
-                                                👤 ${dbNome}<br>
-                                                ⚠️ Stato: ${dbStato}`;
-                        }
-                        trovato = true;
-                        break;
+                    if(nome !== "") {
+                        container.innerHTML += `
+                            <div class="partner-section">
+                                <div class="partner-header"><h2>${nome}</h2></div>
+                                <div class="details">📍 ${indirizzo}</div>
+                                <div class="offer-box">
+                                    <span class="offer-tag">SCONTO ${sconto}</span>
+                                    <span class="product-title">${prodotto}</span>
+                                    <div class="notes">${note}</div>
+                                </div>
+                            </div>`;
                     }
                 }
-
-                if (!trovato) {
-                    result.className = "scaduta";
-                    result.innerHTML = "⚠️ Tessera non trovata o scaduta.";
-                }
-
-            } catch (error) {
-                result.className = "scaduta";
-                result.textContent = "Errore di connessione al database.";
-                console.error(error);
-            }
+            });
+        } catch (error) {
+            document.getElementById('lista-convenzioni').innerHTML = "<p style='text-align:center;'>Si è verificato un errore nel caricamento dei dati.</p>";
         }
-    </script>
+    }
+
+    // Avvia il caricamento
+    window.onload = caricaConvenzioni;
+</script>
+
 </body>
 </html>
