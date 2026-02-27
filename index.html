@@ -92,11 +92,10 @@
         }
 
         #search-box {
-            display: none;
+            display: none; /* Inizialmente nascosto */
             margin-top: 25px;
             padding-top: 20px;
             border-top: 1px solid #eee;
-            animation: slideDown 0.4s ease-out;
         }
 
         input {
@@ -124,15 +123,20 @@
 
         #result {
             margin-top: 15px;
-            font-weight: 600;
+            font-weight: 400;
             padding: 15px;
             border-radius: 10px;
             display: none;
-            font-size: 15px;
+            font-size: 14px;
+            line-height: 1.5;
+            text-align: left;
         }
 
         .attiva { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
         .scaduta { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        
+        /* Animazione caricamento */
+        .loading { color: #666; font-style: italic; font-size: 13px; }
     </style>
 </head>
 
@@ -143,12 +147,10 @@
         <h1>Area Riservata</h1>
         <p class="tagline">CNA Bagheria</p>
 
-        <!-- 🔴 PULSANTE CHE PORTA AL CATALOGO HTML -->
         <a class="btn btn-offerte" href="catalogo.html">
             📘 VEDI CATALOGO CONVENZIONI
         </a>
 
-        <!-- 🔵 PULSANTE VERIFICA TESSERA -->
         <button class="btn btn-verifica" onclick="toggleSearch()">🔍 VERIFICA TESSERA</button>
 
         <div id="search-box">
@@ -161,30 +163,78 @@
     <script>
         function toggleSearch() {
             const box = document.getElementById("search-box");
-            box.style.display = box.style.display === "none" ? "block" : "none";
+            // Fix per il primo click
+            const isHidden = window.getComputedStyle(box).display === "none";
+            box.style.display = isHidden ? "block" : "none";
+            if(isHidden) document.getElementById("cardNumber").focus();
         }
 
-        function checkCard() {
-            const card = document.getElementById("cardNumber").value.trim().toUpperCase();
+        async function checkCard() {
+            const inputField = document.getElementById("cardNumber");
+            const cardInput = inputField.value.trim().toUpperCase();
             const result = document.getElementById("result");
+            
+            // Il tuo link Google Sheets pubblicato come CSV
+            const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vS1jfwi8x1JesxmsI2P6u6K33wbhdifV2IIcamPk5kU_2UlBIw4pmZjsmWMDYUICP4eAlGZJJsUKFlQ/pub?output=csv";
 
-            if (!card) {
+            if (!cardInput) {
                 result.style.display = "block";
                 result.className = "scaduta";
-                result.textContent = "Inserisci un numero tessera valido.";
+                result.textContent = "Inserisci un numero tessera.";
                 return;
             }
 
-            const attive = ["ABC123", "CNA2025", "TESSERA01"];
+            // Mostra caricamento
+            result.style.display = "block";
+            result.className = "loading";
+            result.textContent = "Verifica in corso...";
 
-            if (attive.includes(card)) {
-                result.style.display = "block";
-                result.className = "attiva";
-                result.textContent = "Tessera ATTIVA ✔️";
-            } else {
-                result.style.display = "block";
+            try {
+                const response = await fetch(csvUrl);
+                const data = await response.text();
+                
+                const rows = data.split(/\r?\n/);
+                let trovato = false;
+
+                // Loop saltando l'intestazione (i=1)
+                for (let i = 1; i < rows.length; i++) {
+                    // Gestione nomi con virgole racchiusi tra virgolette
+                    const columns = rows[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+                    
+                    if (columns.length < 5) continue;
+
+                    const dbCard   = columns[0].replace(/"/g, '').trim().toUpperCase();
+                    const dbNome   = columns[1].replace(/"/g, '').trim();
+                    const dbTipo   = columns[2].replace(/"/g, '').trim();
+                    const dbValido = columns[3].replace(/"/g, '').trim();
+                    const dbStato  = columns[4].replace(/"/g, '').trim().toUpperCase();
+
+                    if (dbCard === cardInput) {
+                        if (dbStato === "ATTIVA") {
+                            result.className = "attiva";
+                            result.innerHTML = `✔️ <b>TESSERA ATTIVA</b><br>
+                                                👤 ${dbNome}<br>
+                                                📅 Scadenza: ${dbValido}`;
+                        } else {
+                            result.className = "scaduta";
+                            result.innerHTML = `❌ <b>TESSERA NON ATTIVA</b><br>
+                                                👤 ${dbNome}<br>
+                                                ⚠️ Stato: ${dbStato}`;
+                        }
+                        trovato = true;
+                        break;
+                    }
+                }
+
+                if (!trovato) {
+                    result.className = "scaduta";
+                    result.innerHTML = "⚠️ Tessera non trovata o scaduta.";
+                }
+
+            } catch (error) {
                 result.className = "scaduta";
-                result.textContent = "Tessera NON valida o scaduta ❌";
+                result.textContent = "Errore di connessione al database.";
+                console.error(error);
             }
         }
     </script>
