@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catalogo Convenzioni - CNA Bagheria</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cna-blue: #004a99;
+            --cna-dark: #003366;
+            --accent-gold: #d4af37;
+            --light-bg: #f8f9fa;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light-bg);
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--cna-blue) 0%, var(--cna-dark) 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom: 5px solid var(--accent-gold);
+        }
+
+        .logo-cna {
+            max-width: 120px;
+            margin-bottom: 10px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: -30px auto 40px;
+            padding: 0 15px;
+        }
+
+        .intro-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h1 { margin: 10px 0; font-size: 24px; }
+        .motto { font-style: italic; color: var(--cna-blue); font-weight: 600; }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .cat-item {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 13px;
+            font-weight: 600;
+            border: 1px solid #eee;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .partner-section {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            margin-bottom: 25px;
+            border-left: 8px solid var(--cna-blue);
+        }
+
+        .partner-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .partner-header h2 {
+            margin: 0;
+            color: var(--cna-blue);
+            font-size: 20px;
+        }
+
+        .offer-tag {
+            background: #e63946;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .details {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .conditions {
+            font-size: 12px;
+            color: #999;
+            font-style: italic;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            font-size: 12px;
+            color: #777;
+        }
+
+        @media (max-width: 480px) {
+            h1 { font-size: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="https://www.cna.it/wp-content/themes/cna/assets/img/logo-cna.png" alt="CNA Logo" class="logo-cna">
+    <h1>CNA BAGHERIA</h1>
+    <p>Artigiani e Imprenditori d'Italia [cite: 1, 2]</p>
+</header>
+
+<div class="container">
+    <div class="intro-card">
+        <h2>CATALOGO CONVENZIONI [cite: 5]</h2>
+        <p class="motto">"Più la usi, Più Risparmi!" [cite: 5, 36]</p>
+        <p>Riservato ai titolari di <strong>CNA Cittadini Card</strong> [cite: 3, 14]</p>
+    </div>
+
+    <div class="category-grid">
+        <div class="cat-item">🏠 PRODOTTI PER LA CASA [cite: 12, 40]</div>
+        <div class="cat-item">✨ BELLEZZA E CURA PERSONA [cite: 16]</div>
+        <div class="cat-item">🎭 TEMPO LIBERO E CULTURA [cite: 19, 55]</div>
+        <div class="cat-item">🍞 ALIMENTARI E PANIFICI [cite: 22]</div>
+        <div class="cat-item">🩺 SALUTE E BENESSERE [cite: 24]</div>
+        <div class="cat-item">🚗 SERVIZI E MOBILITÀ [cite: 27]</div>
+        <div class="cat-item">👕 ABBIGLIAMENTO [cite: 32]</div>
+        <div class="cat-item">🏺 ARTIGIANATO E REGALI [cite: 33, 34]</div>
+    </div>
+
+    <div class="partner-section">
+        <div class="partner-header">
+            <h2>GAGLIANO OTTICI [cite: 42, 43]</h2>
+        </div>
+        <p class="details">📍 Via Dante Alighieri 20/B - Bagheria [cite: 44]</p>
+        <p class="details">📍 Via Roccaforte 157 - Bagheria [cite: 45]</p>
+        <hr>
+        <div>
+            <span class="offer-tag">SCONTO 10%</span>
+            <p class="details"><strong>Montature Occhiali</strong> [cite: 46]</p>
+            <p class="conditions">(Valido Martedì e Giovedì su tutte le montature) [cite: 47]</p>
+        </div>
+        <br>
+        <div>
+            <span class="offer-tag">SCONTO 25%</span>
+            <p class="details"><strong>Occhiali da Sole</strong> [cite: 48]</p>
+            <p class="conditions">(Tutti i giorni, escluso Ray-Ban e Gucci) [cite: 49]</p>
+        </div>
+        <br>
+        <div>
+            <span class="offer-tag">SCONTO 15%</span>
+            <p class="details"><strong>Lenti a Contatto</strong> [cite: 50]</p>
+            <p class="conditions">(Tutti i giorni, spesa minima 30€) [cite: 51]</p>
+        </div>
+    </div>
+
+    <div class="partner-section">
+        <div class="partner-header">
+            <h2>CINEMA MULTISALA BAGHERIA [cite: 57, 59]</h2>
+        </div>
+        <p class="details">📍 Cinema Excelsior - Via Ciro Scianna 34 [cite: 60]</p>
+        <p class="details">📍 Cinema Capitol - Via Roma 10 [cite: 61]</p>
+        <hr>
+        <div>
+            <span class="offer-tag">SCONTO 10%</span>
+            <p class="details"><strong>Biglietti Cinema</strong> [cite: 62]</p>
+            <p class="conditions">(Tutti i giorni, tranne Sabato e Domenica) [cite: 63]</p>
+        </div>
+        <br>
+        <div>
+            <span class="offer-tag">SCONTO 40%</span>
+            <p class="details"><strong>Biglietti Cinema</strong> [cite: 64]</p>
+            <p class="conditions">(Valido solo per gli spettacoli del Martedì, festivi esclusi) [cite: 65]</p>
+        </div>
+    </div>
+
+    <footer>
+        © 2026 CNA Bagheria. Tutti i diritti riservati.<br>
+        La Card CNA Bagheria ti accompagna in ogni acquisto! [cite: 36]
+    </footer>
+</div>
+
+</body>
+</html>
