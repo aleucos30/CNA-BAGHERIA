@@ -4,125 +4,194 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catalogo Convenzioni - CNA Bagheria</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --cna-blue: #004a99;
-            --cna-dark: #003366;
+            --cna-dark: #002d62;
             --accent-gold: #d4af37;
-            --light-bg: #f8f9fa;
+            --discount-red: #ef233c;
+            --light-bg: #f0f2f5;
+            --white: #ffffff;
+            --text-main: #2b2d42;
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Inter', sans-serif;
             background-color: var(--light-bg);
             margin: 0;
             padding: 0;
-            color: #333;
+            color: var(--text-main);
+            line-height: 1.6;
         }
 
         header {
-            background: linear-gradient(135deg, var(--cna-blue) 0%, var(--cna-dark) 100%);
+            background: linear-gradient(135deg, var(--cna-dark) 0%, var(--cna-blue) 100%);
             color: white;
-            padding: 40px 20px;
+            padding: 60px 20px;
             text-align: center;
-            border-bottom: 5px solid var(--accent-gold);
+            clip-path: ellipse(150% 100% at 50% 0%);
         }
 
         .logo-cna {
-            max-width: 120px;
-            margin-bottom: 10px;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: -30px auto 40px;
-            padding: 0 15px;
-        }
-
-        .intro-card {
-            background: white;
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        h1 { margin: 10px 0; font-size: 24px; }
-        .motto { font-style: italic; color: var(--cna-blue); font-weight: 600; }
-
-        .category-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
-            margin-bottom: 40px;
-        }
-
-        .cat-item {
-            background: white;
-            padding: 15px;
-            border-radius: 10px;
-            text-align: center;
-            font-size: 13px;
-            font-weight: 600;
-            border: 1px solid #eee;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-        }
-
-        .partner-section {
-            background: white;
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-            margin-bottom: 25px;
-            border-left: 8px solid var(--cna-blue);
-        }
-
-        .partner-header {
-            display: flex;
-            align-items: center;
+            max-width: 140px;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
             margin-bottom: 15px;
         }
 
-        .partner-header h2 {
+        header h1 {
+            font-weight: 700;
+            letter-spacing: 1px;
             margin: 0;
-            color: var(--cna-blue);
-            font-size: 20px;
+            text-transform: uppercase;
         }
 
-        .offer-tag {
-            background: #e63946;
-            color: white;
-            padding: 5px 12px;
+        .container {
+            max-width: 900px;
+            margin: -50px auto 60px;
+            padding: 0 20px;
+        }
+
+        /* Intro Card */
+        .intro-card {
+            background: var(--white);
+            padding: 35px;
             border-radius: 20px;
-            font-size: 14px;
-            font-weight: bold;
-            display: inline-block;
-            margin-bottom: 10px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 4px solid var(--accent-gold);
+        }
+
+        .motto {
+            font-size: 1.2rem;
+            color: var(--cna-blue);
+            font-weight: 700;
+            margin: 10px 0;
+        }
+
+        /* Category Grid */
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 15px;
+            margin-bottom: 50px;
+        }
+
+        .cat-item {
+            background: var(--white);
+            padding: 20px 10px;
+            border-radius: 15px;
+            text-align: center;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0,0,0,0.05);
+            cursor: pointer;
+        }
+
+        .cat-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,74,153,0.15);
+            border-color: var(--cna-blue);
+        }
+
+        /* Partner Sections */
+        .partner-section {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.2s;
+        }
+
+        .partner-section:hover {
+            transform: scale(1.01);
+        }
+
+        .partner-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 100%;
+            background: var(--cna-blue);
+        }
+
+        .partner-header h2 {
+            margin: 0 0 10px 0;
+            color: var(--cna-dark);
+            font-size: 22px;
+            font-weight: 700;
         }
 
         .details {
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 5px;
+            font-size: 0.9rem;
+            color: #6c757d;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        hr {
+            border: 0;
+            border-top: 1px solid #eee;
+            margin: 20px 0;
+        }
+
+        /* Offer Layout */
+        .offers-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .offer-box {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 12px;
+            border-left: 3px solid var(--accent-gold);
+        }
+
+        .offer-tag {
+            background: linear-gradient(45deg, var(--discount-red), #ff4d6d);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 800;
+            display: inline-block;
+            margin-bottom: 8px;
         }
 
         .conditions {
-            font-size: 12px;
+            font-size: 0.75rem;
             color: #999;
             font-style: italic;
+            margin-top: 5px;
+            display: block;
         }
 
         footer {
+            background: var(--cna-dark);
+            color: #bdc3c7;
             text-align: center;
-            padding: 30px;
-            font-size: 12px;
-            color: #777;
+            padding: 50px 20px;
+            margin-top: 60px;
         }
 
-        @media (max-width: 480px) {
-            h1 { font-size: 20px; }
+        /* Icons placeholder (emoji for simplicity) */
+        .icon-map { margin-right: 5px; }
+
+        @media (max-width: 600px) {
+            .offers-container { grid-template-columns: 1fr; }
+            header { padding: 40px 15px; }
+            .intro-card { padding: 20px; }
         }
     </style>
 </head>
@@ -131,76 +200,77 @@
 <header>
     <img src="https://www.cna.it/wp-content/themes/cna/assets/img/logo-cna.png" alt="CNA Logo" class="logo-cna">
     <h1>CNA BAGHERIA</h1>
-    <p>Artigiani e Imprenditori d'Italia [cite: 1, 2]</p>
+    <p>Artigiani e Imprenditori d'Italia</p>
 </header>
 
 <div class="container">
     <div class="intro-card">
-        <h2>CATALOGO CONVENZIONI [cite: 5]</h2>
-        <p class="motto">"Più la usi, Più Risparmi!" [cite: 5, 36]</p>
-        <p>Riservato ai titolari di <strong>CNA Cittadini Card</strong> [cite: 3, 14]</p>
+        <h2>CATALOGO CONVENZIONI</h2>
+        <p class="motto">"Più la usi, Più Risparmi!"</p>
+        <p>Esclusivo per i titolari di <strong>CNA Cittadini Card</strong></p>
     </div>
 
     <div class="category-grid">
-        <div class="cat-item">🏠 PRODOTTI PER LA CASA [cite: 12, 40]</div>
-        <div class="cat-item">✨ BELLEZZA E CURA PERSONA [cite: 16]</div>
-        <div class="cat-item">🎭 TEMPO LIBERO E CULTURA [cite: 19, 55]</div>
-        <div class="cat-item">🍞 ALIMENTARI E PANIFICI [cite: 22]</div>
-        <div class="cat-item">🩺 SALUTE E BENESSERE [cite: 24]</div>
-        <div class="cat-item">🚗 SERVIZI E MOBILITÀ [cite: 27]</div>
-        <div class="cat-item">👕 ABBIGLIAMENTO [cite: 32]</div>
-        <div class="cat-item">🏺 ARTIGIANATO E REGALI [cite: 33, 34]</div>
+        <div class="cat-item">🏠<br>PRODOTTI CASA</div>
+        <div class="cat-item">✨<br>BELLEZZA</div>
+        <div class="cat-item">🎭<br>TEMPO LIBERO</div>
+        <div class="cat-item">🍞<br>ALIMENTARI</div>
+        <div class="cat-item">🩺<br>SALUTE</div>
+        <div class="cat-item">🚗<br>MOBILITÀ</div>
+        <div class="cat-item">👕<br>MODA</div>
+        <div class="cat-item">🏺<br>ARTIGIANATO</div>
     </div>
 
     <div class="partner-section">
         <div class="partner-header">
-            <h2>GAGLIANO OTTICI [cite: 42, 43]</h2>
+            <h2>GAGLIANO OTTICI</h2>
         </div>
-        <p class="details">📍 Via Dante Alighieri 20/B - Bagheria [cite: 44]</p>
-        <p class="details">📍 Via Roccaforte 157 - Bagheria [cite: 45]</p>
+        <div class="details">📍 Via Dante Alighieri 20/B - Bagheria</div>
+        <div class="details">📍 Via Roccaforte 157 - Bagheria</div>
         <hr>
-        <div>
-            <span class="offer-tag">SCONTO 10%</span>
-            <p class="details"><strong>Montature Occhiali</strong> [cite: 46]</p>
-            <p class="conditions">(Valido Martedì e Giovedì su tutte le montature) [cite: 47]</p>
-        </div>
-        <br>
-        <div>
-            <span class="offer-tag">SCONTO 25%</span>
-            <p class="details"><strong>Occhiali da Sole</strong> [cite: 48]</p>
-            <p class="conditions">(Tutti i giorni, escluso Ray-Ban e Gucci) [cite: 49]</p>
-        </div>
-        <br>
-        <div>
-            <span class="offer-tag">SCONTO 15%</span>
-            <p class="details"><strong>Lenti a Contatto</strong> [cite: 50]</p>
-            <p class="conditions">(Tutti i giorni, spesa minima 30€) [cite: 51]</p>
+        <div class="offers-container">
+            <div class="offer-box">
+                <span class="offer-tag">SCONTO 10%</span>
+                <div><strong>Montature Occhiali</strong></div>
+                <span class="conditions">Valido Mar e Gio su tutte le montature</span>
+            </div>
+            <div class="offer-box">
+                <span class="offer-tag">SCONTO 25%</span>
+                <div><strong>Occhiali da Sole</strong></div>
+                <span class="conditions">Sempre (escl. Ray-Ban & Gucci)</span>
+            </div>
+            <div class="offer-box">
+                <span class="offer-tag">SCONTO 15%</span>
+                <div><strong>Lenti a Contatto</strong></div>
+                <span class="conditions">Sempre, spesa minima 30€</span>
+            </div>
         </div>
     </div>
 
     <div class="partner-section">
         <div class="partner-header">
-            <h2>CINEMA MULTISALA BAGHERIA [cite: 57, 59]</h2>
+            <h2>CINEMA MULTISALA BAGHERIA</h2>
         </div>
-        <p class="details">📍 Cinema Excelsior - Via Ciro Scianna 34 [cite: 60]</p>
-        <p class="details">📍 Cinema Capitol - Via Roma 10 [cite: 61]</p>
+        <div class="details">📍 Cinema Excelsior - Via C. Scianna 34</div>
+        <div class="details">📍 Cinema Capitol - Via Roma 10</div>
         <hr>
-        <div>
-            <span class="offer-tag">SCONTO 10%</span>
-            <p class="details"><strong>Biglietti Cinema</strong> [cite: 62]</p>
-            <p class="conditions">(Tutti i giorni, tranne Sabato e Domenica) [cite: 63]</p>
-        </div>
-        <br>
-        <div>
-            <span class="offer-tag">SCONTO 40%</span>
-            <p class="details"><strong>Biglietti Cinema</strong> [cite: 64]</p>
-            <p class="conditions">(Valido solo per gli spettacoli del Martedì, festivi esclusi) [cite: 65]</p>
+        <div class="offers-container">
+            <div class="offer-box">
+                <span class="offer-tag">SCONTO 10%</span>
+                <div><strong>Biglietti Standard</strong></div>
+                <span class="conditions">Tutti i giorni (escl. Sab e Dom)</span>
+            </div>
+            <div class="offer-box">
+                <span class="offer-tag">SCONTO 40%</span>
+                <div><strong>Promo Martedì</strong></div>
+                <span class="conditions">Solo spettacoli del Martedì (escl. festivi)</span>
+            </div>
         </div>
     </div>
 
     <footer>
-        © 2026 CNA Bagheria. Tutti i diritti riservati.<br>
-        La Card CNA Bagheria ti accompagna in ogni acquisto! [cite: 36]
+        <p>© 2026 <strong>CNA Bagheria</strong> - Servizi per il cittadino</p>
+        <p style="font-size: 11px; opacity: 0.7;">Presenta la tua Card digitale o fisica al momento del pagamento per usufruire dei vantaggi.</p>
     </footer>
 </div>
 
