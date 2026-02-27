@@ -21,109 +21,168 @@
         header { 
             background: linear-gradient(135deg, var(--cna-dark) 0%, var(--cna-blue) 100%); 
             color: white; 
-            padding: 40px 20px; 
+            padding: 30px 20px 60px; /* Aumentato padding inferiore per ospitare il logo */
             text-align: center; 
             clip-path: ellipse(150% 100% at 50% 0%); 
         }
 
-        .logo-cna { max-width: 120px; height: auto; margin-bottom: 10px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2)); }
+        .logo-cna { 
+            max-width: 130px; 
+            height: auto; 
+            margin-bottom: 10px; 
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
+            display: inline-block;
+        }
 
-        .container { max-width: 900px; margin: -30px auto 60px; padding: 0 20px; }
+        header h1 { font-size: 1.5rem; margin: 5px 0 0; letter-spacing: 1px; }
+
+        .container { max-width: 900px; margin: -35px auto 60px; padding: 0 15px; }
 
         /* NAVIGAZIONE TASTI */
-        .nav-menu {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 30px;
-            justify-content: center;
+        .nav-menu { 
+            display: flex; 
+            gap: 12px; 
+            margin-bottom: 25px; 
+            justify-content: center; 
+            background: white;
+            padding: 10px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
         }
 
         .nav-btn {
-            flex: 1;
-            padding: 15px 10px;
-            border: none;
-            border-radius: 12px;
+            flex: 1; 
+            padding: 12px 5px; 
+            border: 2px solid transparent; 
+            border-radius: 10px; 
             font-weight: 700;
-            cursor: pointer;
-            transition: 0.3s;
-            text-decoration: none;
-            text-align: center;
-            font-size: 0.9rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            cursor: pointer; 
+            transition: all 0.3s ease; 
+            font-size: 0.85rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            background: #f8f9fa;
+            color: #666;
         }
 
-        .btn-blue { background: var(--cna-blue); color: white; }
-        .btn-gold { background: var(--accent-gold); color: var(--cna-dark); }
-        .nav-btn:hover { transform: translateY(-3px); filter: brightness(1.1); }
+        /* Effetto Tasto Attivo */
+        .nav-btn.active-blue { 
+            background: var(--cna-blue); 
+            color: white; 
+            box-shadow: 0 4px 12px rgba(0,74,153,0.3);
+        }
+        
+        .nav-btn.active-gold { 
+            background: var(--accent-gold); 
+            color: var(--cna-dark); 
+            box-shadow: 0 4px 12px rgba(212,175,55,0.4);
+        }
 
-        /* SEZIONI */
-        .content-section { display: none; animation: fadeIn 0.5s ease-out forwards; }
-        .active { display: block; }
+        .content-section { display: none; animation: fadeIn 0.4s ease-out; }
+        .section-visible { display: block; }
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* CARD CONVENZIONI */
+        /* STILE CARD */
         .partner-section { 
-            background: var(--white); padding: 25px; border-radius: 20px; 
-            box-shadow: 0 8px 25px rgba(0,0,0,0.05); margin-bottom: 20px; 
+            background: var(--white); padding: 25px; border-radius: 18px; 
+            box-shadow: 0 6px 20px rgba(0,0,0,0.05); margin-bottom: 20px; 
             border-left: 6px solid var(--cna-blue);
         }
-        .offer-box { background: #f8f9fa; padding: 15px; border-radius: 12px; border-left: 3px solid var(--accent-gold); margin-top: 10px; }
-        .offer-tag { background: linear-gradient(45deg, var(--discount-red), #ff4d6d); color: white; padding: 4px 12px; border-radius: 8px; font-size: 12px; font-weight: 800; }
+        
+        .partner-header h2 { margin: 0 0 8px 0; color: var(--cna-dark); font-size: 1.3rem; text-transform: uppercase; }
+        
+        .offer-box { 
+            background: #f9fbff; padding: 15px; border-radius: 12px; 
+            border: 1px solid #e1e8f0; border-left: 4px solid var(--accent-gold); margin-top: 15px; 
+        }
+        
+        .offer-tag { 
+            background: linear-gradient(45deg, var(--discount-red), #ff4d6d); 
+            color: white; padding: 3px 10px; border-radius: 6px; font-size: 11px; font-weight: 800; 
+        }
 
-        footer { background: var(--cna-dark); color: #bdc3c7; text-align: center; padding: 30px; margin-top: 60px; font-size: 0.8rem; }
+        /* VERIFICA CARD */
+        .verify-card { text-align: center; padding: 20px; }
+        .input-verifica { 
+            width: 100%; max-width: 300px; padding: 15px; margin: 15px 0; 
+            border: 2px solid #ddd; border-radius: 12px; font-size: 1.2rem; 
+            text-align: center; font-weight: 700; color: var(--cna-blue);
+        }
+
+        footer { text-align: center; padding: 40px; color: #999; font-size: 0.8rem; }
+
+        @media (max-width: 480px) {
+            header { padding: 20px 10px 50px; }
+            .logo-cna { max-width: 100px; }
+            .nav-btn { font-size: 0.75rem; }
+        }
     </style>
 </head>
 <body>
 
 <header>
-    <img src="logo.png" alt="CNA Bagheria" class="logo-cna" onerror="this.style.display='none'">
+    <img src="logo.png" alt="CNA Bagheria" class="logo-cna" onerror="this.src='https://upload.wikimedia.org/wikipedia/it/thumb/3/30/Logo_CNA.svg/1200px-Logo_CNA.svg.png'">
     <h1>CNA BAGHERIA</h1>
 </header>
 
 <div class="container">
     <div class="nav-menu">
-        <button class="nav-btn btn-blue" onclick="switchTab('convenzioni')">🛍️ CONVENZIONI</button>
-        <button class="nav-btn btn-gold" onclick="switchTab('verifica')">🔍 VERIFICA CARD</button>
+        <button id="btn-conv" class="nav-btn active-blue" onclick="switchTab('convenzioni')">
+            <span>🛍️</span> CONVENZIONI
+        </button>
+        <button id="btn-ver" class="nav-btn" onclick="switchTab('verifica')">
+            <span>🔍</span> VERIFICA CARD
+        </button>
     </div>
 
-    <div id="convenzioni" class="content-section active">
-        <div style="text-align:center; margin-bottom:20px;">
-            <h2 style="color: var(--cna-blue);">Catalogo Partner</h2>
-            <p>Sconti esclusivi per i nostri associati</p>
-        </div>
+    <div id="convenzioni" class="content-section section-visible">
         <div id="lista-convenzioni">
-            <p style="text-align:center;">Caricamento catalogo...</p>
+            <p style="text-align:center; padding:20px;">Sincronizzazione catalogo...</p>
         </div>
     </div>
 
     <div id="verifica" class="content-section">
-        <div class="partner-section" style="text-align:center;">
-            <h2>Verifica la tua Card</h2>
-            <p>Inserisci il codice della tua tessera per controllarne la validità.</p>
-            <input type="text" id="cardCode" placeholder="Es: CARD0001" style="width:80%; padding:12px; border-radius:8px; border:1px solid #ddd; margin:15px 0;">
-            <button class="nav-btn btn-blue" style="width:85%;" onclick="alert('Funzione in fase di collegamento...')">CONTROLLA STATO</button>
+        <div class="partner-section verify-card">
+            <h2 style="color: var(--cna-blue);">Controllo Tessera</h2>
+            <p style="font-size:0.9rem; color:#666;">Inserisci il codice per verificare se la card è attiva.</p>
+            <input type="text" id="cardCode" class="input-verifica" placeholder="CARD0000" maxlength="10">
+            <button class="nav-btn active-blue" style="width:100%; max-width:300px; margin: 0 auto;" onclick="controllaCard()">VERIFICA ORA</button>
+            <div id="risultatoVerifica"></div>
         </div>
     </div>
 
     <footer>
-        <p>© 2026 <strong>CNA Bagheria</strong> - Artigiani d'Italia</p>
+        <p>© 2026 <strong>CNA Bagheria</strong><br>Servizi digitali per le imprese e i cittadini</p>
     </footer>
 </div>
 
 <script>
-    // FUNZIONE PER CAMBIARE SCHERMATA
-    function switchTab(tabId) {
-        document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
-        document.getElementById(tabId).classList.add('active');
-    }
+    const CONVENZIONI_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS1jfwi8x1JesxmsI2P6u6K33wbhdifV2IIcamPk5kU_2UlBIw4pmZjsmWMDYUICP4eAlGZJJsUKFlQ/pub?gid=2067656456&single=true&output=csv';
+    const SOCI_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS1jfwi8x1JesxmsI2P6u6K33wbhdifV2IIcamPk5kU_2UlBIw4pmZjsmWMDYUICP4eAlGZJJsUKFlQ/pub?gid=0&single=true&output=csv';
 
-    // CONFIGURAZIONE EXCEL (Assicurati che questo link sia corretto)
-    const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS1jfwi8x1JesxmsI2P6u6K33wbhdifV2IIcamPk5kU_2UlBIw4pmZjsmWMDYUICP4eAlGZJJsUKFlQ/pub?gid=2067656456&single=true&output=csv';
+    // Gestione Tab con colori attivi
+    function switchTab(tabId) {
+        document.querySelectorAll('.content-section').forEach(s => s.classList.remove('section-visible'));
+        document.getElementById(tabId).classList.add('section-visible');
+
+        const btnConv = document.getElementById('btn-conv');
+        const btnVer = document.getElementById('btn-ver');
+
+        if(tabId === 'convenzioni') {
+            btnConv.classList.add('active-blue');
+            btnVer.classList.remove('active-gold');
+        } else {
+            btnConv.classList.remove('active-blue');
+            btnVer.classList.add('active-gold');
+        }
+    }
 
     async function caricaConvenzioni() {
         try {
-            const response = await fetch(SHEET_CSV_URL);
+            const response = await fetch(CONVENZIONI_URL);
             const data = await response.text();
             const righe = data.split('\n').slice(1);
             const container = document.getElementById('lista-convenzioni');
@@ -132,33 +191,65 @@
             righe.forEach(riga => {
                 const colonne = riga.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
                 if(colonne.length >= 3) {
-                    const nome = colonne[0]?.replace(/"/g, '').trim() || '';
-                    const indirizzo = colonne[1]?.replace(/"/g, '').trim() || '';
-                    const sconto = colonne[2]?.replace(/"/g, '').trim() || '';
-                    const prodotto = colonne[3]?.replace(/"/g, '').trim() || '';
-                    const note = colonne[4]?.replace(/"/g, '').trim() || '';
+                    const nome = colonne[0]?.replace(/"/g, '').trim();
+                    const indirizzo = colonne[1]?.replace(/"/g, '').trim();
+                    const sconto = colonne[2]?.replace(/"/g, '').trim();
+                    const prodotto = colonne[3]?.replace(/"/g, '').trim();
+                    const note = colonne[4]?.replace(/"/g, '').trim();
 
                     if(nome) {
                         container.innerHTML += `
                             <div class="partner-section">
                                 <h2>${nome}</h2>
-                                <div style="font-size:0.9rem; color:#666;">📍 ${indirizzo}</div>
+                                <div style="font-size:0.85rem; color:#777;">📍 ${indirizzo}</div>
                                 <div class="offer-box">
                                     <span class="offer-tag">SCONTO ${sconto}</span>
-                                    <div style="margin-top:8px; font-weight:700;">${prodotto}</div>
-                                    <div style="font-size:0.75rem; color:#999; font-style:italic;">${note}</div>
+                                    <div style="margin-top:8px; font-weight:700; color:var(--cna-dark);">${prodotto}</div>
+                                    <div style="font-size:0.75rem; color:#999; font-style:italic; margin-top:4px;">${note}</div>
                                 </div>
                             </div>`;
                     }
                 }
             });
-        } catch (e) {
-            document.getElementById('lista-convenzioni').innerHTML = "Errore di caricamento.";
-        }
+        } catch (e) { console.error("Errore caricamento convenzioni"); }
+    }
+
+    async function controllaCard() {
+        const inputCodice = document.getElementById('cardCode').value.toUpperCase().trim();
+        const risultatoDiv = document.getElementById('risultatoVerifica');
+        if(!inputCodice) return;
+
+        risultatoDiv.innerHTML = "<p style='margin-top:20px;'>Verifica in corso...</p>";
+
+        try {
+            const response = await fetch(SOCI_URL);
+            const data = await response.text();
+            const soci = data.split('\n').slice(1);
+            let trovato = false;
+
+            soci.forEach(riga => {
+                const colonne = riga.split(',');
+                const nomeSocio = colonne[0]?.replace(/"/g, '').trim();
+                const codiceCard = colonne[1]?.replace(/"/g, '').trim();
+                const statoCard = colonne[2]?.replace(/"/g, '').trim();
+
+                if(codiceCard === inputCodice) {
+                    trovato = true;
+                    const isValida = statoCard.toLowerCase() === 'valida';
+                    const colore = isValida ? '#2ecc71' : '#e74c3c';
+                    risultatoDiv.innerHTML = `
+                        <div style="padding:20px; border-radius:15px; background:${colore}10; border:2px solid ${colore}; margin-top:20px;">
+                            <h3 style="color:${colore}; margin:0; font-size:1.1rem;">TESSERA ${statoCard.toUpperCase()}</h3>
+                            <p style="margin:8px 0 0 0; font-size:0.9rem;">Socio: <strong>${nomeSocio}</strong></p>
+                        </div>`;
+                }
+            });
+
+            if(!trovato) risultatoDiv.innerHTML = `<p style="color:#e74c3c; margin-top:20px; font-weight:bold;">⚠️ Codice non trovato nel database.</p>`;
+        } catch (e) { risultatoDiv.innerHTML = "Errore di rete."; }
     }
 
     window.onload = caricaConvenzioni;
 </script>
-
 </body>
 </html>
