@@ -5,52 +5,64 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CNA Bagheria - Servizi Digitali</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
     <style>
         :root {
-            --cna-blue: #004a99;
-            --cna-dark: #002d62;
+            --cna-blue: #38b6ff;      /* tuo azzurro Canva */
+            --cna-dark: #145d9e;      /* azzurro scuro */
             --accent-gold: #d4af37;
             --discount-red: #ef233c;
-            --light-bg: #f0f2f5;
+            --light-bg: #e9f4ff;      /* sfondo pagina meno bianco */
             --white: #ffffff;
         }
 
-        body { font-family: 'Inter', sans-serif; background-color: var(--light-bg); margin: 0; padding: 0; color: #333; }
-        
-        /* HEADER RIDISEGNATO PER NON COPRIRE I TESTI */
-        header { 
-            background: linear-gradient(135deg, var(--cna-dark) 0%, var(--cna-blue) 100%); 
-            color: white; 
-            padding: 40px 20px 80px; /* Spazio extra in basso */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--light-bg);
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        /* HEADER */
+        header {
+            background: var(--cna-blue);
+            color: white;
+            padding: 45px 20px 70px;
             text-align: center;
             position: relative;
         }
 
-        .logo-cna { 
-            max-width: 140px; 
-            height: auto; 
-            margin-bottom: 15px;
-            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+        .logo-cna {
+            max-width: 150px;
+            height: auto;
+            margin-bottom: 10px;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.25));
         }
 
-        header h1 { margin: 0; font-size: 1.6rem; text-transform: uppercase; letter-spacing: 1px; }
+        header h1 {
+            margin: 0;
+            font-size: 1.7rem;
+            font-weight: 700;
+        }
 
-        .container { 
-            max-width: 600px; 
-            margin: -40px auto 60px; /* Alza il contenuto sopra l'header blu */
-            padding: 0 15px; 
+        /* CONTENITORE CENTRALE */
+        .container {
+            max-width: 650px;
+            margin: -40px auto 60px;
+            padding: 0 15px;
             position: relative;
             z-index: 10;
         }
 
-        /* TASTI NAVIGAZIONE */
-        .nav-menu { 
-            display: flex; 
-            gap: 10px; 
+        /* MENU A DUE PULSANTI */
+        .nav-menu {
+            display: flex;
+            gap: 12px;
             background: white;
-            padding: 10px;
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            padding: 12px;
+            border-radius: 18px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.12);
             margin-bottom: 25px;
         }
 
@@ -58,62 +70,87 @@
             flex: 1;
             padding: 15px 5px;
             border: none;
-            border-radius: 10px;
+            border-radius: 12px;
             font-weight: 700;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             cursor: pointer;
-            transition: 0.3s;
+            transition: 0.25s;
             background: #eee;
-            color: #666;
+            color: #555;
         }
 
-        /* Colore tasto attivo */
-        .nav-btn.active-blue { background: var(--cna-blue); color: white; }
-        .nav-btn.active-gold { background: var(--accent-gold); color: var(--cna-dark); }
+        .nav-btn.active-blue {
+            background: var(--cna-dark);
+            color: white;
+        }
+
+        .nav-btn.active-gold {
+            background: var(--accent-gold);
+            color: var(--cna-dark);
+        }
 
         /* SEZIONI */
-        .content-section { display: none; }
-        .active { display: block; animation: fadeIn 0.4s; }
-
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-        /* CARD CONVENZIONI */
-        .card { 
-            background: white; 
-            padding: 20px; 
-            border-radius: 15px; 
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05); 
-            margin-bottom: 15px;
-            border-left: 5px solid var(--cna-blue);
+        .content-section {
+            display: none;
         }
 
-        .offer-tag { 
-            background: var(--discount-red); 
-            color: white; 
-            padding: 4px 10px; 
-            border-radius: 6px; 
-            font-size: 0.75rem; 
+        .active {
+            display: block;
+            animation: fadeIn 0.35s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* CARD CONVENZIONI */
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            margin-bottom: 15px;
+            border-left: 5px solid var(--cna-dark);
+        }
+
+        .offer-tag {
+            background: var(--discount-red);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.75rem;
             font-weight: 800;
             display: inline-block;
             margin-bottom: 10px;
         }
 
         /* VERIFICA CARD */
-        .verify-box { text-align: center; padding: 20px; }
-        .input-card { 
-            width: 100%; 
-            padding: 15px; 
-            font-size: 1.2rem; 
-            border: 2px solid #ddd; 
-            border-radius: 10px; 
+        .verify-box {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .input-card {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.2rem;
+            border: 2px solid #ddd;
+            border-radius: 10px;
             margin-bottom: 15px;
             box-sizing: border-box;
             text-align: center;
         }
 
-        footer { text-align: center; padding: 30px; color: #999; font-size: 0.8rem; }
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #999;
+            font-size: 0.8rem;
+        }
     </style>
 </head>
+
 <body>
 
 <header>
@@ -122,17 +159,21 @@
 </header>
 
 <div class="container">
+
+    <!-- SOLO DUE PULSANTI INIZIALI -->
     <div class="nav-menu">
-        <button id="btn-conv" class="nav-btn active-blue" onclick="switchTab('convenzioni')">🛍️ CONVENZIONI</button>
+        <button id="btn-conv" class="nav-btn" onclick="switchTab('convenzioni')">🛍️ CONVENZIONI</button>
         <button id="btn-ver" class="nav-btn" onclick="switchTab('verifica')">🔍 VERIFICA CARD</button>
     </div>
 
-    <div id="convenzioni" class="content-section active">
+    <!-- SEZIONE CONVENZIONI (NASCOSTA ALL'AVVIO) -->
+    <div id="convenzioni" class="content-section">
         <div id="lista-convenzioni">
             <p style="text-align:center;">Caricamento...</p>
         </div>
     </div>
 
+    <!-- SEZIONE VERIFICA CARD (NASCOSTA ALL'AVVIO) -->
     <div id="verifica" class="content-section">
         <div class="card verify-box">
             <h3>Verifica la tua Card</h3>
@@ -146,17 +187,18 @@
 </div>
 
 <script>
-    const CONVENZIONI_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS1jfwi8x1JesxmsI2P6u6K33wbhdifV2IIcamPk5kU_2UlBIw4pmZjsmWMDYUICP4eAlGZJJsUKFlQ/pub?gid=2067656456&single=true&output=csv';
-    const SOCI_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS1jfwi8x1JesxmsI2P6u6K33wbhdifV2IIcamPk5kU_2UlBIw4pmZjsmWMDYUICP4eAlGZJJsUKFlQ/pub?gid=0&single=true&output=csv';
+    const CONVENZIONI_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vS1jfwi8x1JesxmsI2P6u6K33wbhdifV2IIcamPk5kU_2UlBIw4pmZjsmWMDYUICP4eAlGZJJsUKFlQ/pub?gid=2067656456&single=true&output=csv";
+    const SOCI_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vS1jfwi8x1JesxmsI2P6u6K33wbhdifV2IIcamPk5kU_2UlBIw4pmZjsmWMDYUICP4eAlGZJJsUKFlQ/pub?gid=0&single=true&output=csv";
 
+    /* MOSTRA SOLO LA SEZIONE CLICCATA */
     function switchTab(tabId) {
         document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
         document.getElementById(tabId).classList.add('active');
-        
+
         const b1 = document.getElementById('btn-conv');
         const b2 = document.getElementById('btn-ver');
-        
-        if(tabId === 'convenzioni') {
+
+        if (tabId === 'convenzioni') {
             b1.className = 'nav-btn active-blue';
             b2.className = 'nav-btn';
         } else {
@@ -165,6 +207,7 @@
         }
     }
 
+    /* CARICA CONVENZIONI DA GOOGLE SHEETS */
     async function caricaConvenzioni() {
         try {
             const resp = await fetch(CONVENZIONI_URL);
@@ -175,7 +218,7 @@
 
             righe.forEach(r => {
                 const col = r.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
-                if(col[0]) {
+                if (col[0]) {
                     container.innerHTML += `
                         <div class="card">
                             <span class="offer-tag">SCONTO ${col[2]}</span>
@@ -186,13 +229,16 @@
                         </div>`;
                 }
             });
-        } catch (e) { console.error(e); }
+        } catch (e) {
+            console.error(e);
+        }
     }
 
+    /* VERIFICA CARD */
     async function controllaCard() {
         const input = document.getElementById('cardCode').value.toUpperCase().trim();
         const res = document.getElementById('risultatoVerifica');
-        if(!input) return;
+        if (!input) return;
         res.innerHTML = "Verifica...";
 
         try {
@@ -203,8 +249,7 @@
 
             righe.forEach(r => {
                 const col = r.split(',');
-                // Col A (0): Numero Card | Col B (1): Nome | Col E (4): Stato
-                if(col[0]?.trim().toUpperCase() === input) {
+                if (col[0]?.trim().toUpperCase() === input) {
                     trovato = true;
                     const attiva = col[4]?.trim().toUpperCase() === 'ATTIVA';
                     const color = attiva ? '#2ecc71' : '#e74c3c';
@@ -215,11 +260,16 @@
                         </div>`;
                 }
             });
-            if(!trovato) res.innerHTML = "<p style='color:red; margin-top:15px;'>Codice non trovato.</p>";
-        } catch (e) { res.innerHTML = "Errore di connessione."; }
+
+            if (!trovato) res.innerHTML = "<p style='color:red; margin-top:15px;'>Codice non trovato.</p>";
+
+        } catch (e) {
+            res.innerHTML = "Errore di connessione.";
+        }
     }
 
     window.onload = caricaConvenzioni;
 </script>
+
 </body>
 </html>
