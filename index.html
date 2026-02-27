@@ -24,40 +24,29 @@
             color: #333;
         }
 
-        /* HEADER */
+        /* HEADER CON IMMAGINE */
         header {
-            background: var(--cna-blue);
-            color: white;
-            padding: 55px 20px 90px;
+            background: url('header-cna-bagheria.png') center/cover no-repeat;
+            height: 320px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            padding-bottom: 40px;
             text-align: center;
-            position: relative;
-        }
-
-        /* LOGO SENZA STACCO (PANNELLO ELEGANTE) */
-        .logo-wrapper {
-            background: white;
-            padding: 18px 28px;
-            border-radius: 20px;
-            display: inline-block;
-            box-shadow: 0 4px 14px rgba(0,0,0,0.18);
-            margin-bottom: 12px;
-        }
-
-        .logo-cna {
-            max-width: 150px;
-            height: auto;
+            color: white;
         }
 
         header h1 {
-            margin: 0;
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: 700;
+            text-shadow: 0 3px 8px rgba(0,0,0,0.35);
+            margin: 0;
         }
 
         /* CONTENITORE CENTRALE */
         .container {
             max-width: 650px;
-            margin: -50px auto 60px;
+            margin: -40px auto 60px;
             padding: 0 15px;
             position: relative;
             z-index: 10;
@@ -87,10 +76,6 @@
             color: #555;
         }
 
-        .nav-btn:hover {
-            filter: brightness(1.08);
-        }
-
         .nav-btn.active-blue {
             background: var(--cna-blue);
             color: white;
@@ -101,20 +86,10 @@
             color: var(--cna-dark);
         }
 
-        /* SEZIONI */
-        .content-section {
-            display: none;
-        }
+        .content-section { display: none; }
+        .active { display: block; animation: fadeIn 0.35s; }
 
-        .active {
-            display: block;
-            animation: fadeIn 0.35s;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
         /* CARD CONVENZIONI */
         .card {
@@ -160,7 +135,7 @@
             text-align: center;
         }
 
-        /* SEZIONE CONTATTI */
+        /* CONTATTI */
         .contatti-section {
             margin-top: 40px;
             padding: 25px;
@@ -200,28 +175,22 @@
 <body>
 
 <header>
-    <div class="logo-wrapper">
-        <img src="logo.png" alt="CNA" class="logo-cna">
-    </div>
     <h1>CNA Bagheria</h1>
 </header>
 
 <div class="container">
 
-    <!-- MENU PRINCIPALE -->
     <div class="nav-menu">
         <button id="btn-conv" class="nav-btn" onclick="switchTab('convenzioni')">🛍️ CONVENZIONI</button>
         <button id="btn-ver" class="nav-btn" onclick="switchTab('verifica')">🔍 VERIFICA CARD</button>
     </div>
 
-    <!-- SEZIONE CONVENZIONI -->
     <div id="convenzioni" class="content-section">
         <div id="lista-convenzioni">
             <p style="text-align:center;">Caricamento...</p>
         </div>
     </div>
 
-    <!-- SEZIONE VERIFICA CARD -->
     <div id="verifica" class="content-section">
         <div class="card verify-box">
             <h3>Verifica la tua Card</h3>
@@ -231,7 +200,6 @@
         </div>
     </div>
 
-    <!-- SEZIONE CONTATTI -->
     <div class="contatti-section">
         <h2>Contatti CNA Bagheria</h2>
         <div class="contatti-card">
