@@ -8,11 +8,11 @@
 
     <style>
         :root {
-            --cna-blue: #38b6ff;      /* tuo azzurro Canva */
-            --cna-dark: #145d9e;      /* azzurro scuro */
+            --cna-blue: #145D9E;      /* tuo azzurro corretto */
+            --cna-dark: #0f3f73;      /* versione più scura */
             --accent-gold: #d4af37;
             --discount-red: #ef233c;
-            --light-bg: #e9f4ff;      /* sfondo pagina meno bianco */
+            --light-bg: #e6eef6;      /* sfondo pagina derivato */
             --white: #ffffff;
         }
 
@@ -80,7 +80,7 @@
         }
 
         .nav-btn.active-blue {
-            background: var(--cna-dark);
+            background: var(--cna-blue);
             color: white;
         }
 
@@ -111,7 +111,7 @@
             border-radius: 15px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.06);
             margin-bottom: 15px;
-            border-left: 5px solid var(--cna-dark);
+            border-left: 5px solid var(--cna-blue);
         }
 
         .offer-tag {
@@ -222,7 +222,7 @@
                     container.innerHTML += `
                         <div class="card">
                             <span class="offer-tag">SCONTO ${col[2]}</span>
-                            <h3 style="margin:0; color:var(--cna-dark);">${col[0]}</h3>
+                            <h3 style="margin:0; color:var(--cna-blue);">${col[0]}</h3>
                             <p style="font-size:0.8rem; color:#666; margin:5px 0;">📍 ${col[1]}</p>
                             <div style="font-weight:700; margin-top:10px;">${col[3]}</div>
                             <div style="font-size:0.7rem; color:#999; font-style:italic;">${col[4] || ''}</div>
