@@ -5,217 +5,123 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CNA Bagheria - Servizi Digitali</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-
     <style>
-        :root {
-            --cna-blue: #145D9E;
-            --cna-dark: #0F3F73;
-            --accent-gold: #d4af37;
-            --discount-red: #ef233c;
-            --light-bg: #e6eef6;
-            --white: #ffffff;
-        }
+        :root { --cna-blue: #145D9E; --cna-dark: #0F3F73; --discount-red: #ef233c; --light-bg: #e6eef6; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--light-bg); margin: 0; color: #333; }
+        
+        header { background: var(--cna-blue); color: white; padding: 40px 20px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .container { max-width: 600px; margin: -30px auto 50px; padding: 0 15px; }
+        
+        .tabs { display: flex; gap: 10px; background: white; padding: 10px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        .tab-btn { flex: 1; padding: 12px; border: none; border-radius: 10px; cursor: pointer; font-weight: bold; background: #eee; transition: 0.3s; }
+        .tab-btn.active { background: var(--cna-blue); color: white; }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--light-bg);
-            margin: 0;
-            padding: 0;
-            color: #333;
-        }
+        .section { display: none; background: white; padding: 25px; border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .section.active { display: block; }
 
-        /* HEADER */
-        header {
-            background: url('header-cna-bagheria.png') center/cover no-repeat;
-            height: 320px;
-            display: flex;
-            justify-content: center;
-            align-items: flex-end;
-            padding-bottom: 40px;
-            text-align: center;
-            color: white;
-        }
-
-        header h1 {
-            font-size: 2rem;
-            font-weight: 700;
-            text-shadow: 0 3px 8px rgba(0,0,0,0.35);
-            margin: 0;
-        }
-
-        /* CONTENITORE CENTRALE */
-        .container {
-            max-width: 650px;
-            margin: -40px auto 60px;
-            padding: 0 15px;
-            position: relative;
-            z-index: 10;
-        }
-
-        /* MENU A DUE PULSANTI */
-        .nav-menu {
-            display: flex;
-            gap: 12px;
-            background: white;
-            padding: 14px;
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.12);
-            margin-bottom: 25px;
-        }
-
-        .nav-btn {
-            flex: 1;
-            padding: 16px 5px;
-            border: none;
-            border-radius: 14px;
-            font-weight: 700;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: 0.25s;
-            background: #eee;
-            color: #555;
-        }
-
-        .nav-btn.active-blue {
-            background: var(--cna-blue);
-            color: white;
-        }
-
-        .nav-btn.active-gold {
-            background: var(--accent-gold);
-            color: var(--cna-dark);
-        }
-
-        .content-section { display: none; }
-        .active { display: block; animation: fadeIn 0.35s; }
-
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-        /* CARD CONVENZIONI */
-        .card {
-            background: white;
-            padding: 26px;
-            border-radius: 18px;
-            box-shadow: 0 4px 14px rgba(0,0,0,0.08);
-            margin-bottom: 24px;
-            border-left: 6px solid var(--cna-blue);
-            transition: 0.25s;
-        }
-
-        .card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-        }
-
-        .offer-tag {
-            background: var(--discount-red);
-            color: white;
-            padding: 6px 14px;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 800;
-            display: inline-block;
-            margin-bottom: 12px;
-        }
-
-        /* VERIFICA CARD */
-        .verify-box {
-            text-align: center;
-            padding: 25px;
-        }
-
-        .input-card {
-            width: 100%;
-            padding: 15px;
-            font-size: 1.2rem;
-            border: 2px solid #ddd;
-            border-radius: 12px;
-            margin-bottom: 15px;
-            box-sizing: border-box;
-            text-align: center;
-        }
-
-        /* CONTATTI */
-        .contatti-section {
-            margin-top: 40px;
-            padding: 25px;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-        }
-
-        .contatti-section h2 {
-            margin-top: 0;
-            color: var(--cna-blue);
-            text-align: center;
-            font-size: 1.4rem;
-        }
-
-        .contatti-card {
-            font-size: 1rem;
-            color: #444;
-            line-height: 1.6;
-        }
-
-        .contatti-card a {
-            color: var(--cna-blue);
-            font-weight: 700;
-            text-decoration: none;
-        }
-
-        footer {
-            text-align: center;
-            padding: 30px;
-            color: #999;
-            font-size: 0.8rem;
-        }
+        .card-item { border-left: 5px solid var(--cna-blue); padding: 15px; margin-bottom: 15px; background: #f9f9f9; border-radius: 8px; }
+        .tag { background: var(--discount-red); color: white; padding: 3px 8px; border-radius: 5px; font-size: 12px; font-weight: bold; }
+        
+        input { width: 100%; padding: 15px; margin: 15px 0; border: 2px solid #ddd; border-radius: 10px; box-sizing: border-box; font-size: 16px; text-align: center; }
+        .btn-check { width: 100%; padding: 15px; background: var(--cna-blue); color: white; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; }
+        
+        #risultato { margin-top: 20px; }
+        .footer { text-align: center; padding: 20px; color: #888; font-size: 12px; }
     </style>
 </head>
-
 <body>
 
 <header>
     <h1>CNA Bagheria</h1>
+    <p>Portale Convenzioni e Verifica Card</p>
 </header>
 
 <div class="container">
-
-    <div class="nav-menu">
-        <button id="btn-conv" class="nav-btn" onclick="switchTab('convenzioni')">🛍️ CONVENZIONI</button>
-        <button id="btn-ver" class="nav-btn" onclick="switchTab('verifica')">🔍 VERIFICA CARD</button>
+    <div class="tabs">
+        <button class="tab-btn active" onclick="showTab('conv')">🛒 CONVENZIONI</button>
+        <button class="tab-btn" onclick="showTab('ver')">🔍 VERIFICA CARD</button>
     </div>
 
-    <div id="convenzioni" class="content-section">
-        <div id="lista-convenzioni">
-            <p style="text-align:center;">Caricamento...</p>
-        </div>
+    <div id="conv" class="section active">
+        <div id="lista-convenzioni">Caricamento dati dal foglio...</div>
     </div>
 
-    <div id="verifica" class="content-section">
-        <div class="card verify-box">
-            <h3>Verifica la tua Card</h3>
-            <input type="text" id="cardCode" class="input-card" placeholder="Esempio: CARD0001">
-            <button class="nav-btn active-blue" style="width:100%;" onclick="controllaCard()">CONTROLLA STATO</button>
-            <div id="risultatoVerifica"></div>
-        </div>
+    <div id="ver" class="section">
+        <h3>Inserisci il tuo Codice</h3>
+        <input type="text" id="codiceInput" placeholder="Esempio: CARD0001">
+        <button class="btn-check" onclick="verifica()">CONTROLLA STATO</button>
+        <div id="risultato"></div>
     </div>
 
-    <div class="contatti-section">
-        <h2>Contatti CNA Bagheria</h2>
-        <div class="contatti-card">
-            <p><strong>📍 Sede:</strong> Bagheria (PA)</p>
-            <p><strong>📞 Telefono:</strong> <a href="tel:0917573843">091 757 3843</a></p>
-            <p><strong>📧 Email:</strong> <a href="mailto:cnabagheria@libero.it">cnabagheria@libero.it</a></p>
-        </div>
-    </div>
-
+    <div class="footer">© 2026 CNA Bagheria - Collegato a Google Sheets</div>
 </div>
 
-<footer>
-    © 2026 CNA Bagheria
-</footer>
+<script>
+    // IL TUO LINK GOOGLE SHEET (CSV)
+    const url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vS1jfwi8x1JesxmsI2P6u6K33wbhdifV2IIcamPk5kU_2UlBIw4pmZjsmWMDYUICP4eAlGZJJsUKFlQ/pub?output=csv";
+    
+    let datiGlobali = [];
 
-<script src="script.js"></script>
+    // Funzione per cambiare scheda
+    function showTab(id) {
+        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        event.currentTarget.classList.add('active');
+    }
+
+    // Scarica i dati dal Sheet
+    async function scaricaDati() {
+        try {
+            const res = await fetch(url);
+            const text = await res.text();
+            const righe = text.split("\n").map(r => r.split(","));
+            datiGlobali = righe.slice(1); // Rimuove intestazione
+            renderConvenzioni();
+        } catch (e) {
+            document.getElementById('lista-convenzioni').innerHTML = "Errore nel caricamento.";
+        }
+    }
+
+    // Mostra le convenzioni
+    function renderConvenzioni() {
+        let html = "";
+        datiGlobali.forEach(r => {
+            // Se non inizia con "CARD", è una convenzione
+            if(r[0] && !r[0].includes("CARD")) {
+                html += `<div class="card-item">
+                    <span class="tag">${r[2]} SCONTO</span>
+                    <h3 style="margin:5px 0">${r[0]}</h3>
+                    <p style="margin:0; font-size:14px; color:#666">${r[1]}</p>
+                    <small>Su: ${r[3]}</small>
+                </div>`;
+            }
+        });
+        document.getElementById('lista-convenzioni').innerHTML = html || "Nessuna convenzione trovata.";
+    }
+
+    // Cerca la Card
+    function verifica() {
+        const input = document.getElementById('codiceInput').value.trim().toUpperCase();
+        const resDiv = document.getElementById('risultato');
+        
+        const card = datiGlobali.find(r => r[0].trim().toUpperCase() === input);
+        
+        if(card) {
+            const attiva = card[4].toUpperCase().includes("ATTIVA");
+            resDiv.innerHTML = `
+                <div style="padding:15px; border-radius:10px; background:${attiva ? '#d4edda':'#f8d7da'}; color:${attiva ? '#155724':'#721c24'}">
+                    <strong>STATO: ${card[4]}</strong><br>
+                    👤 Titolare: ${card[1]}<br>
+                    📅 Scadenza: ${card[3]}
+                </div>`;
+        } else {
+            resDiv.innerHTML = "<p style='color:red'>Codice non trovato.</p>";
+        }
+    }
+
+    window.onload = scaricaDati;
+</script>
 
 </body>
 </html>
