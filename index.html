@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catalogo Convenzioni - CNA Bagheria</title>
+    <title>CNA Bagheria - Servizi Digitali</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -21,114 +21,116 @@
         header { 
             background: linear-gradient(135deg, var(--cna-dark) 0%, var(--cna-blue) 100%); 
             color: white; 
-            padding: 60px 20px; 
+            padding: 40px 20px; 
             text-align: center; 
             clip-path: ellipse(150% 100% at 50% 0%); 
         }
 
-        .logo-cna { 
-            max-width: 140px; 
-            height: auto;
-            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3)); 
-            margin-bottom: 15px; 
+        .logo-cna { max-width: 120px; height: auto; margin-bottom: 10px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2)); }
+
+        .container { max-width: 900px; margin: -30px auto 60px; padding: 0 20px; }
+
+        /* NAVIGAZIONE TASTI */
+        .nav-menu {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            justify-content: center;
         }
 
-        .container { max-width: 900px; margin: -50px auto 60px; padding: 0 20px; }
-
-        .intro-card { 
-            background: var(--white); 
-            padding: 35px; 
-            border-radius: 20px; 
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1); 
-            text-align: center; 
-            margin-bottom: 40px; 
-            border-bottom: 4px solid var(--accent-gold); 
+        .nav-btn {
+            flex: 1;
+            padding: 15px 10px;
+            border: none;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+            text-decoration: none;
+            text-align: center;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
-        .motto { color: var(--cna-blue); font-weight: 700; font-size: 1.2rem; margin: 10px 0; }
+        .btn-blue { background: var(--cna-blue); color: white; }
+        .btn-gold { background: var(--accent-gold); color: var(--cna-dark); }
+        .nav-btn:hover { transform: translateY(-3px); filter: brightness(1.1); }
 
+        /* SEZIONI */
+        .content-section { display: none; animation: fadeIn 0.5s ease-out forwards; }
+        .active { display: block; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* CARD CONVENZIONI */
         .partner-section { 
-            background: var(--white); 
-            padding: 30px; 
-            border-radius: 20px; 
-            box-shadow: 0 8px 25px rgba(0,0,0,0.05); 
-            margin-bottom: 25px; 
-            position: relative; 
+            background: var(--white); padding: 25px; border-radius: 20px; 
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05); margin-bottom: 20px; 
             border-left: 6px solid var(--cna-blue);
-            animation: fadeIn 0.6s ease-out forwards;
         }
+        .offer-box { background: #f8f9fa; padding: 15px; border-radius: 12px; border-left: 3px solid var(--accent-gold); margin-top: 10px; }
+        .offer-tag { background: linear-gradient(45deg, var(--discount-red), #ff4d6d); color: white; padding: 4px 12px; border-radius: 8px; font-size: 12px; font-weight: 800; }
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
-        .partner-header h2 { margin: 0 0 10px 0; color: var(--cna-dark); font-size: 22px; text-transform: uppercase; }
-        .details { font-size: 0.9rem; color: #6c757d; margin-bottom: 5px; }
-        
-        .offer-box { 
-            background: #f8f9fa; 
-            padding: 15px; 
-            border-radius: 12px; 
-            border-left: 3px solid var(--accent-gold); 
-            margin-top: 15px; 
-        }
-
-        .offer-tag { 
-            background: linear-gradient(45deg, var(--discount-red), #ff4d6d); 
-            color: white; 
-            padding: 4px 12px; 
-            border-radius: 8px; 
-            font-size: 13px; 
-            font-weight: 800; 
-            display: inline-block; 
-        }
-
-        .product-title { margin-top: 8px; font-weight: 700; display: block; }
-        .notes { font-size: 0.75rem; color: #999; font-style: italic; margin-top: 5px; }
-
-        footer { background: var(--cna-dark); color: #bdc3c7; text-align: center; padding: 40px 20px; margin-top: 60px; }
-        
-        .loading { text-align: center; padding: 50px; color: var(--cna-blue); font-weight: 600; }
+        footer { background: var(--cna-dark); color: #bdc3c7; text-align: center; padding: 30px; margin-top: 60px; font-size: 0.8rem; }
     </style>
 </head>
 <body>
 
 <header>
-    <img src="logo.png" alt="CNA Bagheria" class="logo-cna" onerror="this.src='https://upload.wikimedia.org/wikipedia/it/thumb/3/30/Logo_CNA.svg/1200px-Logo_CNA.svg.png'">
+    <img src="logo.png" alt="CNA Bagheria" class="logo-cna" onerror="this.style.display='none'">
     <h1>CNA BAGHERIA</h1>
-    <p>Catalogo Convenzioni 2026</p>
 </header>
 
 <div class="container">
-    <div class="intro-card">
-        <p class="motto">"Più la usi, Più Risparmi!"</p>
-        <p>Mostra la tua <strong>CNA Cittadini Card</strong> per usufruire degli sconti immediati.</p>
+    <div class="nav-menu">
+        <button class="nav-btn btn-blue" onclick="switchTab('convenzioni')">🛍️ CONVENZIONI</button>
+        <button class="nav-btn btn-gold" onclick="switchTab('verifica')">🔍 VERIFICA CARD</button>
     </div>
 
-    <div id="lista-convenzioni">
-        <div class="loading">Caricamento convenzioni in corso...</div>
+    <div id="convenzioni" class="content-section active">
+        <div style="text-align:center; margin-bottom:20px;">
+            <h2 style="color: var(--cna-blue);">Catalogo Partner</h2>
+            <p>Sconti esclusivi per i nostri associati</p>
+        </div>
+        <div id="lista-convenzioni">
+            <p style="text-align:center;">Caricamento catalogo...</p>
+        </div>
+    </div>
+
+    <div id="verifica" class="content-section">
+        <div class="partner-section" style="text-align:center;">
+            <h2>Verifica la tua Card</h2>
+            <p>Inserisci il codice della tua tessera per controllarne la validità.</p>
+            <input type="text" id="cardCode" placeholder="Es: CARD0001" style="width:80%; padding:12px; border-radius:8px; border:1px solid #ddd; margin:15px 0;">
+            <button class="nav-btn btn-blue" style="width:85%;" onclick="alert('Funzione in fase di collegamento...')">CONTROLLA STATO</button>
+        </div>
     </div>
 
     <footer>
-        <p>© 2026 <strong>CNA Bagheria</strong> - Servizi per il cittadino</p>
+        <p>© 2026 <strong>CNA Bagheria</strong> - Artigiani d'Italia</p>
     </footer>
 </div>
 
 <script>
-    const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS1jfwi8x1JesxmsI2P6u6K33wbhdifV2IIcamPk5kU_2UlBIw4pmZjsmWMDYUICP4eAlGZJJsUKFlQ/pub?output=csv';
+    // FUNZIONE PER CAMBIARE SCHERMATA
+    function switchTab(tabId) {
+        document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+        document.getElementById(tabId).classList.add('active');
+    }
+
+    // CONFIGURAZIONE EXCEL (Assicurati che questo link sia corretto)
+    const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS1jfwi8x1JesxmsI2P6u6K33wbhdifV2IIcamPk5kU_2UlBIw4pmZjsmWMDYUICP4eAlGZJJsUKFlQ/pub?gid=2067656456&single=true&output=csv';
 
     async function caricaConvenzioni() {
         try {
             const response = await fetch(SHEET_CSV_URL);
             const data = await response.text();
-            
-            // Dividiamo il CSV in righe, saltando la prima (intestazione)
             const righe = data.split('\n').slice(1);
             const container = document.getElementById('lista-convenzioni');
             container.innerHTML = '';
 
             righe.forEach(riga => {
-                // Regex per gestire correttamente le virgole dentro le celle se presenti
                 const colonne = riga.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
-                
                 if(colonne.length >= 3) {
                     const nome = colonne[0]?.replace(/"/g, '').trim() || '';
                     const indirizzo = colonne[1]?.replace(/"/g, '').trim() || '';
@@ -136,26 +138,25 @@
                     const prodotto = colonne[3]?.replace(/"/g, '').trim() || '';
                     const note = colonne[4]?.replace(/"/g, '').trim() || '';
 
-                    if(nome !== "") {
+                    if(nome) {
                         container.innerHTML += `
                             <div class="partner-section">
-                                <div class="partner-header"><h2>${nome}</h2></div>
-                                <div class="details">📍 ${indirizzo}</div>
+                                <h2>${nome}</h2>
+                                <div style="font-size:0.9rem; color:#666;">📍 ${indirizzo}</div>
                                 <div class="offer-box">
                                     <span class="offer-tag">SCONTO ${sconto}</span>
-                                    <span class="product-title">${prodotto}</span>
-                                    <div class="notes">${note}</div>
+                                    <div style="margin-top:8px; font-weight:700;">${prodotto}</div>
+                                    <div style="font-size:0.75rem; color:#999; font-style:italic;">${note}</div>
                                 </div>
                             </div>`;
                     }
                 }
             });
-        } catch (error) {
-            document.getElementById('lista-convenzioni').innerHTML = "<p style='text-align:center;'>Si è verificato un errore nel caricamento dei dati.</p>";
+        } catch (e) {
+            document.getElementById('lista-convenzioni').innerHTML = "Errore di caricamento.";
         }
     }
 
-    // Avvia il caricamento
     window.onload = caricaConvenzioni;
 </script>
 
