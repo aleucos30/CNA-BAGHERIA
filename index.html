@@ -24,7 +24,7 @@
             color: #333;
         }
 
-        /* HEADER CON IMMAGINE */
+        /* HEADER */
         header {
             background: url('header-cna-bagheria.png') center/cover no-repeat;
             height: 320px;
@@ -209,90 +209,13 @@
         </div>
     </div>
 
-    <footer>© 2026 CNA Bagheria</footer>
 </div>
 
-<script>
-    const CONVENZIONI_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vS1jfwi8x1JesxmsI2P6u6K33wbhdifV2IIcamPk5kU_2UlBIw4pmZjsmWMDYUICP4eAlGZJJsUKFlQ/pub?gid=2067656456&single=true&output=csv";
-    const SOCI_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vS1jfwi8x1JesxmsI2P6u6K33wbhdifV2IIcamPk5kU_2UlBIw4pmZjsmWMDYUICP4eAlGZJJsUKFlQ/pub?gid=0&single=true&output=csv";
+<footer>
+    © 2026 CNA Bagheria
+</footer>
 
-    function switchTab(tabId) {
-        document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
-        document.getElementById(tabId).classList.add('active');
-
-        const b1 = document.getElementById('btn-conv');
-        const b2 = document.getElementById('btn-ver');
-
-        if (tabId === 'convenzioni') {
-            b1.className = 'nav-btn active-blue';
-            b2.className = 'nav-btn';
-        } else {
-            b1.className = 'nav-btn';
-            b2.className = 'nav-btn active-gold';
-        }
-    }
-
-    async function caricaConvenzioni() {
-        try {
-            const resp = await fetch(CONVENZIONI_URL);
-            const data = await resp.text();
-            const righe = data.split('\n').slice(1);
-            const container = document.getElementById('lista-convenzioni');
-            container.innerHTML = '';
-
-            righe.forEach(r => {
-                const col = r.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
-                if (col[0]) {
-                    container.innerHTML += `
-                        <div class="card">
-                            <span class="offer-tag">SCONTO ${col[2]}</span>
-                            <h3 style="margin:0; color:var(--cna-blue);">${col[0]}</h3>
-                            <p style="font-size:0.9rem; color:#666; margin:5px 0;">📍 ${col[1]}</p>
-                            <div style="font-weight:700; margin-top:10px;">${col[3]}</div>
-                            <div style="font-size:0.75rem; color:#999; font-style:italic;">${col[4] || ''}</div>
-                        </div>`;
-                }
-            });
-        } catch (e) {
-            console.error(e);
-        }
-    }
-
-    async function controllaCard() {
-        const input = document.getElementById('cardCode').value.toUpperCase().trim();
-        const res = document.getElementById('risultatoVerifica');
-        if (!input) return;
-        res.innerHTML = "Verifica...";
-
-        try {
-            const resp = await fetch(SOCI_URL);
-            const data = await resp.text();
-            const righe = data.split('\n').slice(1);
-            let trovato = false;
-
-            righe.forEach(r => {
-                const col = r.split(',');
-                if (col[0]?.trim().toUpperCase() === input) {
-                    trovato = true;
-                    const attiva = col[4]?.trim().toUpperCase() === 'ATTIVA';
-                    const color = attiva ? '#2ecc71' : '#e74c3c';
-                    res.innerHTML = `
-                        <div style="margin-top:20px; padding:15px; border:2px solid ${color}; border-radius:10px; background:${color}11">
-                            <h4 style="color:${color}; margin:0;">TESSERA ${attiva ? 'ATTIVA' : 'SCADUTA'}</h4>
-                            <p style="margin:5px 0 0 0;">Socio: <b>${col[1]}</b></p>
-                        </div>`;
-                }
-            });
-
-            if (!trovato) res.innerHTML = "<p style='color:red; margin-top:15px;'>Codice non trovato.</p>";
-
-        } catch (e) {
-            res.innerHTML = "Errore di connessione.";
-        }
-    }
-
-    window.onload = caricaConvenzioni;
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>
